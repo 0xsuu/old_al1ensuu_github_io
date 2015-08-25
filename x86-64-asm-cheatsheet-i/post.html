@@ -5,7 +5,38 @@
         </title>
     </head>
     <body>
-        x86-64 assembly/shellcode cheatsheet
-        (i) General information and Register
+        <big>x86-64 assembly/shellcode cheatsheet</big><br>
+        <br>
+        (i) General information and Register<br>
+        How to test your assembly/shellcode?<br>
+        <br>
+        <p>
+        i. write code in a *.s file<br>
+        </p>
+        <p>
+        ii.
+        <div style="margin-left:20px; margin-top:0px; margin-bottom:20px;">
+            nasm *.s
+        </div>
+        for generating hex code for shellcode, file * generated.<br>
+        </p>
+        <p>
+        iii.<br>
+        <div style="margin-left:20px; margin-top:0px; margin-bottom:20px;">
+        nasm -f [arch] *.s
+        </div>
+        for generating file including header info, file *.o generated.<br>
+        </p>
+        <p>
+        iv. if you want to test your code, linking should be the next step.<br>
+        <div style="margin-left:20px; margin-top:0px; margin-bottom:20px;">
+        ld *.o
+        </div>
+        type ./a.out to run your code.
+        </p>
+        
+        Register list for x64:<br>
+        <img src="/x86-64-asm-cheatsheet-i/register_list.png"></img>
+        
     </body>
 </html>
