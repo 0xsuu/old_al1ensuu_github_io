@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title>
+            0xsuu's blog
+        </title>
+    </head>
+    <body>
+        
+    </body>
+</html>
