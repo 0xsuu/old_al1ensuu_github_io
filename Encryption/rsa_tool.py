@@ -1,5 +1,6 @@
+#!/usr/bin/python
 
-import sys, getopt
+import sys, getopt, os
 import rsa
 
 try:
@@ -45,19 +46,50 @@ for opt, arg in opts:
         message = arg
 
 if mode == 100:
-    result = ""
-    j=0
-    for i in range(0,len(message),2):
-        result += chr(int("0x"+message[i]+message[i+1],16))
-    print "Decrypted:"
-    print rsa.decrypt(result, privkey)
+    if message=="":
+        while True:
+            print "Input:",
+            message=raw_input()
+            result = ""
+            j=0
+            for i in range(0,len(message),2):
+                result += chr(int("0x"+message[i]+message[i+1],16))
+                print "Decrypted:"
+                print rsa.decrypt(result, privkey)
+    else:
+        result = ""
+        j=0
+        for i in range(0,len(message),2):
+            result += chr(int("0x"+message[i]+message[i+1],16))
+        print "Decrypted:"
+        print rsa.decrypt(result, privkey)
 elif mode == 200:
-    message = rsa.encrypt(message, pubkey)
-    retString = ""
-    for i in range(len(message)):
-        cha = str(hex(ord(message[i])))[2:]
-        if len(cha) == 1:
-            cha = "0"+cha
-        retString += cha
-    print "Encrypted:"
-    print retString
+    if message=="":
+        while True:
+            print "Input:",
+            message=raw_input()
+            message = rsa.encrypt(message, pubkey)
+            retString = ""
+            for i in range(len(message)):
+                cha = str(hex(ord(message[i])))[2:]
+                if len(cha) == 1:
+                    cha = "0"+cha
+                retString += cha
+            print "Encrypted:"
+            print retString
+            cmd = "osascript -e \"set the clipboard to \\\""+retString+"\\\"\""
+            os.system(cmd)
+            print "Copied"
+    else:
+        message = rsa.encrypt(message, pubkey)
+        retString = ""
+        for i in range(len(message)):
+            cha = str(hex(ord(message[i])))[2:]
+            if len(cha) == 1:
+                cha = "0"+cha
+            retString += cha
+        print "Encrypted:"
+        print retString
+        cmd = "osascript -e \"set the clipboard to \\\""+retString+"\\\"\""
+        os.system(cmd)
+        print "Copied"
