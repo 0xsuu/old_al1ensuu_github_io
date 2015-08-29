@@ -54,8 +54,8 @@ if mode == 100:
             j=0
             for i in range(0,len(message),2):
                 result += chr(int("0x"+message[i]+message[i+1],16))
-                print "Decrypted:"
-                print rsa.decrypt(result, privkey)
+            print "Decrypted:"
+            print rsa.decrypt(result, privkey)
     else:
         result = ""
         j=0
