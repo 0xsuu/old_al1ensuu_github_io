@@ -19,7 +19,8 @@ for opt, arg in opts:
         print "rsa.py -m [message] -e(ncryption) -d(ecryption) -g(enerate key pair)"
         exit(0)
     if opt == "-g":
-        (pubkey, privkey) = rsa.newkeys(2048)
+        print "Generating key pair"
+        (pubkey, privkey) = rsa.newkeys(1024)
         privfile = open("priv", "w")
         privfile.write(privkey.save_pkcs1("PEM"))
         pubfile = open("pub", "w")
