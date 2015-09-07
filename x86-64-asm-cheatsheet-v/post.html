@@ -1,12 +1,22 @@
 <html>
     <head>
         <title>
-            (5) Anti-debug with ptrace in assembly
+            (v) Anti-debug with ptrace in assembly
         </title>
     </head>
     <body style="font-family:courier;">
         <h3>x86-64 assembly/shellcode cheatsheet</h3>
-        <h4>(5) Anti-debug with ptrace in assembly</h4>
+        <h4>(v) Anti-debug with ptrace in assembly</h4>
+        
+        As we know, there’s a function called ptrace() which can be used to prevent debugger from running and exit with error code 45. For the C code, it is easy to find on the internet. So now we are talking about invoking ptrace with syscall.<br>
+        As shown before of this serial cheatsheets, we know how to invoke a syscall and all we need is syscall number and arguments. There’s a syscall defined as<br>
+        #define	SYS_ptrace         26<br>
+        (From OS X 10.10)<br>
+        And we can build the code, only 3 lines:<br>
+        mov rax, 0x200001a  ;ptrace<br>
+        mov rdi, 31<br>
+        syscall<br>
+        Nice and easy, now our newbie reverse engineers cannot hook ptrace() and will still get an error code 45.<br>
         
         compiled:<br>"\xb8\x1a\x00\x00\x02\xbf\x1f\x00\x00\x00\x0f\x05"
     </body>
