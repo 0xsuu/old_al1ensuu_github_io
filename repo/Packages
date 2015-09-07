@@ -1,0 +1,15 @@
+Package: com.suu.slide2kill8lite
+Version: 0.0.3-3
+Architecture: iphoneos-arm
+Maintainer: Suu
+Installed-Size: 368
+Depends: mobilesubstrate
+Filename: ./debs//com.suu.slide2kill8lite_0.0.3-3_iphoneos-arm.deb
+Size: 80656
+MD5sum: 8e94a4cc0d9d2157e95a4907ae402389
+SHA1: 628f3882334cfdb2348173cfe67488f49f358a53
+SHA256: 5e9e3f265cf37a251abdb834fa63b0ff3610465bc8ab432d4d4d5ef67baeb058
+Section: Tweaks
+Author: Suu
+Name: Slide2Kill8 Lite
+
