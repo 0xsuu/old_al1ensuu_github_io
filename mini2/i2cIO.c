@@ -56,8 +56,8 @@ void listAllDevices()
 		if (I2C_MasterTransferData((LPC_I2C_TypeDef *) LPC_I2C1, &transferCfg, I2C_TRANSFER_POLLING )){
 			count_devices ++;
 			transferCfg.sl_addr7bit = addr;
-			printWithInt("Addr: %\n\r", addr);
-			printWithInt("Count: %\n\r", count_devices);
+			serialPrintWithInt("Addr: %\n\r", addr);
+			serialPrintWithInt("Count: %\n\r", count_devices);
 
 		}
 		

@@ -1,9 +1,13 @@
 
-void printWithInt(char outStr[], int value);
+void serialPrint(char outStr[]);
 
-int read_usb_serial_none_blocking(char *buf,int length);
+//Useage: myPrintf("[String Content]%[String Content]", int)
+//Only support one integer
+void serialPrintWithInt(char outStr[], int value);
 
-int write_usb_serial_blocking(char *buf,int length);
+//Removed from public functions, use serialPrint instead
+//int read_usb_serial_none_blocking(char *buf,int length);
+//int write_usb_serial_blocking(char *buf,int length);
 
 void serial_init(void);
 

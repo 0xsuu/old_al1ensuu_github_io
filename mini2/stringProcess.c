@@ -1,21 +1,5 @@
-// Serial code
-//#include "lpc17xx_uart.h"		// Central include files
-//#include "lpc17xx_pinsel.h"
-//#include "lpc_types.h"
-#include "serialIO.h"			// Local functions
 
-
-// Read options
-int read_usb_serial_none_blocking(char *buf,int length)
-{
-	return(UART_Receive((LPC_UART_TypeDef *)LPC_UART0, (uint8_t *)buf, length, NONE_BLOCKING));
-}
-
-// Write options
-int write_usb_serial_blocking(char *buf,int length)
-{
-	return(UART_Send((LPC_UART_TypeDef *)LPC_UART0,(uint8_t *)buf,length, BLOCKING));
-}
+#include "stringProcess.h"
 
 int stringLength(char targetStr[])
 {
@@ -29,9 +13,28 @@ int stringLength(char targetStr[])
     return i;
 }
 
-//Useage: myPrintf("[String Content]%[String Content]", int)
+char * stringCat(char *strA, char *strB)
+{
+    char *retStr = malloc(sizeof(char)*(stringLength(strA)+stringLength(strB)));
+    
+    int i;
+    for (i = 0; strA[i]!='\x00'; i++)
+    {
+        retStr[i] = strA[i];
+    }
+    
+    int start = i;
+    for (i = 0; strB[i]!='\x00'; i++)
+    {
+        retStr[start+i+1] = strB[i];
+    }
+    
+    return retStr;
+}
+
+//Useage: stringWithInt("[String Content]%[String Content]", int)
 //Only support one integer
-void printWithInt(char outStr[], int value)
+void stringWithInt(char outStr[], int value)
 {
     int length = stringLength(outStr);
     
@@ -79,7 +82,7 @@ void printWithInt(char outStr[], int value)
                     {
                         addition = 48;
                     }
-
+                    
                     newOutStr[j+k-sizeof(int)] = ((value >> ((sizeof(int)*3-k-1)*4)) & 0xf) + addition;
                 }
                 
@@ -104,52 +107,4 @@ void printWithInt(char outStr[], int value)
                 newOutStr[j] = outStr[j-sizeof(int)*2-1];
             }
         }
-        write_usb_serial_blocking(newOutStr, length);
-    }
-    else
-    {
-        write_usb_serial_blocking(outStr, length);
-    }
-}
-
-// init code for the USB serial line
-void serial_init(void)
-{
-	UART_CFG_Type UARTConfigStruct;			// UART Configuration structure variable
-	UART_FIFO_CFG_Type UARTFIFOConfigStruct;	// UART FIFO configuration Struct variable
-	PINSEL_CFG_Type PinCfg;				// Pin configuration for UART
-	/*
-	 * Initialize UART pin connect
-	 */
-	PinCfg.Funcnum = 1;
-	PinCfg.OpenDrain = 0;
-	PinCfg.Pinmode = 0;
-	// USB serial first
-	PinCfg.Portnum = 0;
-	PinCfg.Pinnum = 2;
-	PINSEL_ConfigPin(&PinCfg);
-	PinCfg.Pinnum = 3;
-	PINSEL_ConfigPin(&PinCfg);
-		
-	/* Initialize UART Configuration parameter structure to default state:
-	 * - Baudrate = 9600bps
-	 * - 8 data bit
-	 * - 1 Stop bit
-	 * - None parity
-	 */
-	UART_ConfigStructInit(&UARTConfigStruct);
-	/* Initialize FIFOConfigStruct to default state:
-	 * - FIFO_DMAMode = DISABLE
-	 * - FIFO_Level = UART_FIFO_TRGLEV0
-	 * - FIFO_ResetRxBuf = ENABLE
-	 * - FIFO_ResetTxBuf = ENABLE
-	 * - FIFO_State = ENABLE
-	 */
-	UART_FIFOConfigStructInit(&UARTFIFOConfigStruct);
-	// Built the basic structures, lets start the devices/
-	// USB serial
-	UART_Init((LPC_UART_TypeDef *)LPC_UART0, &UARTConfigStruct);		// Initialize UART0 peripheral with given to corresponding parameter
-	UART_FIFOConfig((LPC_UART_TypeDef *)LPC_UART0, &UARTFIFOConfigStruct);	// Initialize FIFO for UART0 peripheral
-	UART_TxCmd((LPC_UART_TypeDef *)LPC_UART0, ENABLE);			// Enable UART Transmit
-	
 }
