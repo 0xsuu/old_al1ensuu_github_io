@@ -1,0 +1,9 @@
+
+void printWithInt(char outStr[], int value);
+
+int read_usb_serial_none_blocking(char *buf,int length);
+
+int write_usb_serial_blocking(char *buf,int length);
+
+void serial_init(void);
+

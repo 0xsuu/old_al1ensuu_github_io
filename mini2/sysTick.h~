@@ -1,0 +1,4 @@
+
+void delayS(int time);
+void delayMS(uint32_t time);
+
