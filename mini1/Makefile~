@@ -39,7 +39,7 @@ SERIALIO	= serialIO.o
 SYSTICK		= sysTick.o
 MAIN		= main.o
 
-TO_COMPILE	= $(LED) $(SERIALIO) $(MAIN) $(SYSTICK)
+TO_COMPILE	= $(LED) $(SERIALIO) $(MAIN)
 all:	mini1
 	@echo "Build finished"
 

@@ -80,7 +80,7 @@ void printWithInt(char outStr[], int value)
                         addition = 48;
                     }
 
-                    newOutStr[j+k-sizeof(int)] = ((value >> ((sizeof(int)*3-k-1)*4)) & 0xf) + addition;
+                    newOutStr[j+k-sizeof(int)] = ((value >> ((sizeof(int)*3-k)*4)) & 0xf) + addition;
                 }
                 
                 for (k = 0; k < sizeof(int)*2; k++)

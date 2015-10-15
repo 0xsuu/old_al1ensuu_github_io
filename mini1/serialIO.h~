@@ -1,5 +1,5 @@
 
-void printWithInt(char outStr[], int value);
+void printWithInt(char outStr[], int value)
 
 int read_usb_serial_none_blocking(char *buf,int length);
 
