@@ -33,14 +33,17 @@ void listAllDevices()
 	uint8_t data = 0;
 	int count_devices =0;
 	serial_init();
-	write_usb_serial_blocking("USB test code\n\r",16);
+	serialPrint("All Devices List:\n\r");
 
 	i2c_init();
 	I2C_M_SETUP_Type transferCfg;
 		
 	//transferCfg.sl_addr7bit =		//slave address in 7bit mode
 	transferCfg.tx_data = &data ;		
-	transferCfg.tx_length =	1;	
+	transferCfg.tx_length =	sizeof(uint8_t);
+	transferCfg.rx_data = NULL;
+    transferCfg.rx_length = 0;
+	transferCfg.retransmissions_max = 3;	
 	//transferCfg.tx_count = 0;	
 	//transferCfg.rx_data = NULL;			
 	//transferCfg.rx_length = 0;		
@@ -51,17 +54,18 @@ void listAllDevices()
 		
 	//I2C_MasterTransferData((LPC_I2C_TypeDef *) LPC_I2C1, &transferCfg, I2C_TRANSFER_POLLING );
 	
-	for (addr=0; addr<= 127; addr++){
+	for (addr=0; addr<= 127; addr++)
+	{
 		transferCfg.sl_addr7bit = addr;
-		if (I2C_MasterTransferData((LPC_I2C_TypeDef *) LPC_I2C1, &transferCfg, I2C_TRANSFER_POLLING )){
+		if (I2C_MasterTransferData(LPC_I2C1, &transferCfg, I2C_TRANSFER_POLLING ))
+		{
 			count_devices ++;
 			transferCfg.sl_addr7bit = addr;
-			printWithInt("Addr: %\n\r", addr);
-			printWithInt("Count: %\n\r", count_devices);
-
+			serialPrintWithInt("Device NO.%\n\r", count_devices);
+			serialPrintWithInt("\tAddr: %\n\r", addr);
 		}
-		
 	}
+	serialPrintWithInt("\n\rCount: %\n\r", count_devices);
 	/*int addr;
 	//uint8_t result = 0;
 	uint8_t data = 0;

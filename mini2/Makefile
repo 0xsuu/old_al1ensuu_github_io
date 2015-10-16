@@ -35,12 +35,13 @@ LDFLAGS+=-L$(CMSIS)/lib -lDriversLPC17xxgnu
 EXECNAME	= bin/mini2
 
 LED         = led.o
+STRINGPROCESS	= stringProcess.o
 SERIALIO	= serialIO.o
 I2CIO		= i2cIO.o
 SYSTICK		= sysTick.o
 MAIN		= main.o
 
-TO_COMPILE	= $(LED) $(SERIALIO) $(I2CIO) $(MAIN) $(SYSTICK)
+TO_COMPILE	= $(LED) $(STRINGPROCESS) $(SERIALIO) $(I2CIO) $(MAIN) $(SYSTICK)
 all:	mini2
 	@echo "Build finished"
 
@@ -53,6 +54,9 @@ mini2:	$(TO_COMPILE)
     
 led:	$(LED)
 	$(CC) -c led.c $(LDFLAGS)
+
+stringProcess:	$(STRINGPROCESS)
+	$(CC) -c stringProcess.c $(LDFLAGS)
 
 serialIO:	$(SERIALIO)
 	$(CC) -c serialIO.c $(LDFLAGS)
