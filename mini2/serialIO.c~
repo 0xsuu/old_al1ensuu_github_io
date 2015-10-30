@@ -12,13 +12,14 @@
 
 void serialPrint(char outStr[])
 {
-    //write_usb_serial_blocking(outStr, stringLength(outStr));
+    write_usb_serial_blocking(outStr, stringLength(outStr));
 }
 
-void serialPrintWithInt(char outStr[], int value)
+void serialPrintWithInt(char outStr[], uint32_t value)
 {
-    outStr = stringWithInt(outStr, value);
-    //write_usb_serial_blocking(outStr, stringLength(outStr));
+	char newOutStr[stringLength(outStr)+4*2 + 1];
+    stringWithInt(newOutStr, outStr, value);
+    write_usb_serial_blocking(newOutStr, stringLength(outStr));
 }
 
 //

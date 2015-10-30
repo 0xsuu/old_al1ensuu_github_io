@@ -9,43 +9,17 @@
 
 void stage1()
 {
-	int addr;
-	//uint8_t result = 0;
-	int data = 0;
-	int count_devices =0;
-	serial_init();
-	
-	i2c_init();
-	I2C_M_SETUP_Type transferCfg;
-	
-	printWithInt("I2C Loaded\n\r", 0);
-		
-	transferCfg.tx_data = &data;		
-	transferCfg.tx_length =	1;	
-	
-	for (addr=0; addr<= 127; addr++)
-	{
-		printWithInt("Looping\n\r", 0);
-		transferCfg.sl_addr7bit = addr;
-		if (I2C_MasterTransferData((LPC_I2C_TypeDef *) LPC_I2C1, &transferCfg, I2C_TRANSFER_POLLING ))
-		{
-			count_devices ++;
-			transferCfg.sl_addr7bit = addr;
-			printWithInt("Device NO.%\n\r", count_devices);
-			printWithInt("\tAddr: %\n\r", addr);
-		}
-	}
-	printWithInt("Count: %\n\r", count_devices);
+	listAllDevices();
 }
 
 void stage2()
 {
-
+	printOnLCD("A");
 }
 
 void stage3()
 {
-
+	registerKeyboardInterrupt();
 }
 
 void stage4()
@@ -56,10 +30,12 @@ void stage4()
 int main()
 {   
     setupLEDs();
-    //LEDdebug(0b1010);
+    i2c_init();
+	serial_init();
+
     stage1();
     //stage2();
-    //stage3();
+    stage3();
     //stage4();
     
     return 0;

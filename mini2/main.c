@@ -14,12 +14,12 @@ void stage1()
 
 void stage2()
 {
-
+	printOnLCD("A");
 }
 
 void stage3()
 {
-
+	registerKeyboardInterrupt();
 }
 
 void stage4()
@@ -30,10 +30,12 @@ void stage4()
 int main()
 {   
     setupLEDs();
-    //LEDdebug(0b1010);
-    stage1();
+    i2c_init();
+	serial_init();
+
+    //stage1();
     //stage2();
-    //stage3();
+    stage3();
     //stage4();
     
     return 0;

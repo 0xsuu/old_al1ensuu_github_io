@@ -77,6 +77,10 @@ clean:
 	rm -f *.d */*.d *.srec */*.a bin/*.map
 	rm -f *.elf *.wrn bin/*.bin log *.hex
 	rm -f $(EXECNAME)
+	
+go:
+	make
+	make install
 # install software to board, remember to sync the file systems
 install:
 	@echo "Copying " $(EXECNAME) "to the MBED file system"

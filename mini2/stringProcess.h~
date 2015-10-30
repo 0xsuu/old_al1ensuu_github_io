@@ -1,4 +1,4 @@
 
 int stringLength(char targetStr[]);
 char * stringCat(char *strA, char *strB);
-void stringWithInt(char *outStr, int value);
+void stringWithInt(char *newOutStr, char *outStr, uint32_t value);

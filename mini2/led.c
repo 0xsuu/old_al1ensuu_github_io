@@ -1,5 +1,5 @@
 
-#include "lpc17xx_gpio.h" #GPIO header
+#include "lpc17xx_gpio.h" //GPIO header
 
 #include "led.h"
 
@@ -20,7 +20,7 @@ void LEDdebug(uint8_t num)
     GPIO_SetValue(1, ((num&1) << 23) | (((num>>1) & 1) << 21) | (((num>>2) & 1) << 20) | (((num>>3) & 1) << 18));
 }
 
-void LEDdebugR(uint8_t num)
+void LEDdebugN(uint8_t num)
 {
 	LEDoff();
     GPIO_SetValue(1, ((num&1) << 18) | (((num>>1) & 1) << 20) | (((num>>2) & 1) << 21) | (((num>>3) & 1) << 23));

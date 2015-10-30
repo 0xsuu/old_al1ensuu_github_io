@@ -15,4 +15,4 @@ void LEDoff();
 //For direct binary value
 void LEDdebug(uint8_t num); //0b0000 - 0b1111
 //For natual reading direction
-void LEDdebugR(uint8_t num); //0x0 - 0xf
+void LEDdebugN(uint8_t num); //0x0 - 0xf

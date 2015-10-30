@@ -46,9 +46,9 @@ void stringCopy(char dest[], const char source[])
 
 //Useage: stringWithInt("[String Content]%[String Content]", int)
 //Only support one integer
-char * stringWithInt(char outStr[], int value)
+void stringWithInt(char *newOutStr, char outStr[], uint32_t value)
 {
-    int length = stringLength(outStr);
+    uint32_t length = stringLength(outStr);
     
     int hasInteger = 0;
     int i;
@@ -63,9 +63,8 @@ char * stringWithInt(char outStr[], int value)
     
     if (hasInteger == 1)
     {
-        length += sizeof(int)*2 + 1;
+        length += 4*2 + 1;
         
-        char newOutStr[length];
         int j;
         for (j = 0; j<length; j++)
         {
@@ -83,10 +82,10 @@ char * stringWithInt(char outStr[], int value)
                 //Convert hex into char, and convert little endian into big endian
                 int k;
                 
-                for (k = sizeof(int); k < sizeof(int)*2; k++)
+                for (k = 4; k < 4*2; k++)
                 {
                     unsigned short addition = 0;
-                    if (((value >> ((sizeof(int)-k-1)*4)) & 0xf) > 0x9)
+                    if (((value >> ((4-k-1)*4)) & 0xf) > 0x9)
                     {
                         addition = 55;
                     }
@@ -95,13 +94,13 @@ char * stringWithInt(char outStr[], int value)
                         addition = 48;
                     }
                     
-                    newOutStr[j+k-sizeof(int)] = ((value >> ((sizeof(int)*3-k-1)*4)) & 0xf) + addition;
+                    newOutStr[j+k-4] = ((value >> ((4*3-k-1)*4)) & 0xf) + addition;
                 }
                 
-                for (k = 0; k < sizeof(int); k++)
+                for (k = 0; k < 4; k++)
                 {
                     unsigned short addition = 0;
-                    if (((value >> ((sizeof(int)-k-1)*4)) & 0xf) > 0x9)
+                    if (((value >> ((4-k-1)*4)) & 0xf) > 0x9)
                     {
                         addition = 55;
                     }
@@ -110,16 +109,19 @@ char * stringWithInt(char outStr[], int value)
                         addition = 48;
                     }
                     
-                    newOutStr[j+k+sizeof(int)] = ((value >> ((sizeof(int)-k-1)*4)) & 0xf) + addition;
+                    newOutStr[j+k+4] = ((value >> ((4-k-1)*4)) & 0xf) + addition;
                 }
-                j += sizeof(int)*2 - 1;
+                j += 4*2 - 1;
             }
             else
             {
             	
-                newOutStr[j] = outStr[j-sizeof(int)*2-1];
+                newOutStr[j] = outStr[j-4*2-1];
             }
         }
-        return &newOutStr;
+    }
+    else
+    {
+    	newOutStr = outStr;
     }
 }
