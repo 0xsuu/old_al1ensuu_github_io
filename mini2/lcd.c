@@ -63,10 +63,14 @@ void lcd_init()
 	i2cTransferM(0x3B, addr, 2, NULL, 0, I2C_TRANSFER_POLLING);
 }
 
-void lcdPrint(char *outStr)
+void lcdPut(uint8_t outChar)
 {
-	lcdClearScreen();
-	
+	uint8_t transferData[2] = {0x40, outChar+0x80};
+	i2cTransferM(0x3B, transferData, 2, NULL, 0, I2C_TRANSFER_POLLING);
+}
+
+void lcdPrint(char *outStr)
+{	
 	int hasToReturn = 0;
 	
 	int i;
@@ -83,8 +87,8 @@ void lcdPrint(char *outStr)
 	{
 		uint8_t transferData1[hasToReturn];
 		uint8_t transferData2[stringLength(outStr)-hasToReturn];
-		uint8_t outStr1[hasToReturn];
-		uint8_t outStr2[stringLength(outStr)-hasToReturn];
+		char outStr1[hasToReturn];
+		char outStr2[stringLength(outStr)-hasToReturn];
 		
 		int j;
 		for(j = 0; j < stringLength(outStr); j++)

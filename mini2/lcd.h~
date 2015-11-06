@@ -4,7 +4,7 @@
 
 void lcdClearScreen();
 void lcd_init();
-void lcdPrint(uint_8 *transferData, char *outStr);
+void lcdPrint(char *outStr);
 //int lcdPrintWithInt(char *outStr, uint32_t value);
 
 #endif

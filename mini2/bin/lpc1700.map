@@ -74,7 +74,7 @@ END GROUP
                 0x10000058                PROVIDE (__cs3_heap_start, _end)
                 0x10008000                PROVIDE (__cs3_heap_end, (__cs3_region_start_ram + __cs3_region_size_ram))
 
-.text           0x00000000     0x578c
+.text           0x00000000     0x580c
  CREATE_OBJECT_SYMBOLS
                 0x00000000                __cs3_region_start_rom = .
  *(.cs3.region-head.rom)
@@ -116,462 +116,469 @@ END GROUP
  .text.lcd_init
                 0x0000036c       0xa0 lcd.o
                 0x0000036c                lcd_init
+ .text.lcdPut   0x0000040c       0x44 lcd.o
+                0x0000040c                lcdPut
  .text.lcdPrint
-                0x0000040c      0x3bc lcd.o
-                0x0000040c                lcdPrint
- .text          0x000007c8        0x0 stringProcess.o
+                0x00000450      0x3b8 lcd.o
+                0x00000450                lcdPrint
+ .text          0x00000808        0x0 stringProcess.o
  .text.stringLength
-                0x000007c8       0x3c stringProcess.o
-                0x000007c8                stringLength
+                0x00000808       0x3c stringProcess.o
+                0x00000808                stringLength
  .text.stringCopy
-                0x00000804       0x44 stringProcess.o
-                0x00000804                stringCopy
+                0x00000844       0x44 stringProcess.o
+                0x00000844                stringCopy
  .text.stringWithInt
-                0x00000848      0x1cc stringProcess.o
-                0x00000848                stringWithInt
- .text          0x00000a14        0x0 serialIO.o
+                0x00000888      0x1cc stringProcess.o
+                0x00000888                stringWithInt
+ .text          0x00000a54        0x0 serialIO.o
  .text.serialPrint
-                0x00000a14       0x20 serialIO.o
-                0x00000a14                serialPrint
+                0x00000a54       0x20 serialIO.o
+                0x00000a54                serialPrint
  .text.serialPrintWithInt
-                0x00000a34       0xa4 serialIO.o
-                0x00000a34                serialPrintWithInt
+                0x00000a74       0xa4 serialIO.o
+                0x00000a74                serialPrintWithInt
  .text.read_usb_serial_none_blocking
-                0x00000ad8       0x2c serialIO.o
-                0x00000ad8                read_usb_serial_none_blocking
+                0x00000b18       0x2c serialIO.o
+                0x00000b18                read_usb_serial_none_blocking
  .text.write_usb_serial_blocking
-                0x00000b04       0x2c serialIO.o
-                0x00000b04                write_usb_serial_blocking
+                0x00000b44       0x2c serialIO.o
+                0x00000b44                write_usb_serial_blocking
  .text.serial_init
-                0x00000b30       0x90 serialIO.o
-                0x00000b30                serial_init
- .text          0x00000bc0        0x0 i2cIO.o
- .text.i2c_init
-                0x00000bc0       0x68 i2cIO.o
-                0x00000bc0                i2c_init
- .text.i2cTransferM
-                0x00000c28       0x4c i2cIO.o
-                0x00000c28                i2cTransferM
- .text.listAllDevices
-                0x00000c74       0x9c i2cIO.o
-                0x00000c74                listAllDevices
- .text.I2C1_IRQHandler
-                0x00000d10       0x90 i2cIO.o
-                0x00000d10                I2C1_IRQHandler
- .text.registerKeyboardInterrupt
-                0x00000da0      0x1bc i2cIO.o
-                0x00000da0                registerKeyboardInterrupt
- .text          0x00000f5c        0x0 main.o
- .text.stage1   0x00000f5c        0xc main.o
-                0x00000f5c                stage1
- .text.stage2   0x00000f68       0x14 main.o
-                0x00000f68                stage2
- .text.stage3   0x00000f7c        0xc main.o
-                0x00000f7c                stage3
- .text.stage4   0x00000f88        0xc main.o
-                0x00000f88                stage4
- .text.main     0x00000f94       0x20 main.o
-                0x00000f94                main
- .text          0x00000fb4        0x0 sysTick.o
- .text.delayS   0x00000fb4       0x6c sysTick.o
-                0x00000fb4                delayS
- .text.delayMS  0x00001020       0x5c sysTick.o
-                0x00001020                delayMS
- .text.SysTick_Handler
-                0x0000107c       0x58 sysTick.o
-                0x0000107c                SysTick_Handler
- .text.SETUP_Systick
-                0x000010d4       0x2c sysTick.o
-                0x000010d4                SETUP_Systick
- .text          0x00001100        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
- .text          0x00001100        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .text.SystemCoreClockUpdate
-                0x00001100      0x228 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
-                0x00001100                SystemCoreClockUpdate
- .text.SystemInit
-                0x00001328      0x240 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
-                0x00001328                SystemInit
- .text          0x00001568       0x14 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
-                0x00001568                NMI_Handler
-                0x0000156a                HardFault_Handler
-                0x0000156c                MemManage_Handler
-                0x0000156e                BusFault_Handler
-                0x00001570                UsageFault_Handler
-                0x00001572                SVC_Handler
-                0x00001574                DebugMon_Handler
-                0x00001576                PendSV_Handler
-                0x0000157a                TIMER2_IRQHandler
-                0x0000157a                RIT_IRQHandler
-                0x0000157a                I2C0_IRQHandler
-                0x0000157a                USBActivity_IRQHandler
-                0x0000157a                PWM1_IRQHandler
-                0x0000157a                EINT2_IRQHandler
-                0x0000157a                UART1_IRQHandler
-                0x0000157a                EINT3_IRQHandler
-                0x0000157a                CANActivity_IRQHandler
-                0x0000157a                TIMER3_IRQHandler
-                0x0000157a                UART0_IRQHandler
-                0x0000157a                PLL0_IRQHandler
-                0x0000157a                CAN_IRQHandler
-                0x0000157a                PLL1_IRQHandler
-                0x0000157a                SSP0_IRQHandler
-                0x0000157a                I2S_IRQHandler
-                0x0000157a                I2C2_IRQHandler
-                0x0000157a                RTC_IRQHandler
-                0x0000157a                TIMER0_IRQHandler
-                0x0000157a                SPI_IRQHandler
-                0x0000157a                EINT1_IRQHandler
-                0x0000157a                TIMER1_IRQHandler
-                0x0000157a                UART2_IRQHandler
-                0x0000157a                Default_Handler
-                0x0000157a                ADC_IRQHandler
-                0x0000157a                SSP1_IRQHandler
-                0x0000157a                USB_IRQHandler
-                0x0000157a                BOD_IRQHandler
-                0x0000157a                WDT_IRQHandler
-                0x0000157a                QEI_IRQHandler
-                0x0000157a                EINT0_IRQHandler
-                0x0000157a                DMA_IRQHandler
-                0x0000157a                UART3_IRQHandler
-                0x0000157a                MCPWM_IRQHandler
-                0x0000157a                ENET_IRQHandler
- .text          0x0000157c       0x30 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
-                0x0000157c                __cs3_premain
- .text.cs3.init
-                0x000015ac       0x50 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
-                0x000015ac                __cs3_start_c
- .text          0x000015fc        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
- .text.cs3.init
-                0x000015fc       0x10 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
-                0x000015fc                _start
- .text          0x0000160c       0x50 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
-                0x0000160c                __libc_init_array
- .text          0x0000165c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .text.GPIO_GetPointer
-                0x0000165c       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .text.FIO_HalfWordGetPointer
-                0x000016d8       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .text.FIO_ByteGetPointer
-                0x00001754       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .text.GPIO_SetDir
-                0x000017d0       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x000017d0                GPIO_SetDir
- .text.GPIO_SetValue
-                0x00001820       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001820                GPIO_SetValue
- .text.GPIO_ClearValue
-                0x0000184c       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x0000184c                GPIO_ClearValue
- .text.GPIO_ReadValue
-                0x00001878       0x30 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001878                GPIO_ReadValue
- .text.GPIO_IntCmd
-                0x000018a8       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x000018a8                GPIO_IntCmd
- .text.GPIO_GetIntStatus
-                0x0000192c       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x0000192c                GPIO_GetIntStatus
- .text.GPIO_ClearInt
-                0x000019ec       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x000019ec                GPIO_ClearInt
- .text.FIO_SetDir
-                0x00001a2c       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001a2c                FIO_SetDir
- .text.FIO_SetValue
-                0x00001a54       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001a54                FIO_SetValue
- .text.FIO_ClearValue
-                0x00001a74       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001a74                FIO_ClearValue
- .text.FIO_ReadValue
-                0x00001a94       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001a94                FIO_ReadValue
- .text.FIO_IntCmd
-                0x00001ab4       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001ab4                FIO_IntCmd
- .text.FIO_GetIntStatus
-                0x00001adc       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001adc                FIO_GetIntStatus
- .text.FIO_ClearInt
-                0x00001b08       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001b08                FIO_ClearInt
- .text.FIO_SetMask
-                0x00001b28       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001b28                FIO_SetMask
- .text.FIO_HalfWordSetDir
-                0x00001b78       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001b78                FIO_HalfWordSetDir
- .text.FIO_HalfWordSetMask
-                0x00001c14       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001c14                FIO_HalfWordSetMask
- .text.FIO_HalfWordSetValue
-                0x00001cb0       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001cb0                FIO_HalfWordSetValue
- .text.FIO_HalfWordClearValue
-                0x00001cf0       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001cf0                FIO_HalfWordClearValue
- .text.FIO_HalfWordReadValue
-                0x00001d30       0x44 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001d30                FIO_HalfWordReadValue
- .text.FIO_ByteSetDir
-                0x00001d74       0x70 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001d74                FIO_ByteSetDir
- .text.FIO_ByteSetMask
-                0x00001de4       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001de4                FIO_ByteSetMask
- .text.FIO_ByteSetValue
-                0x00001e5c       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001e5c                FIO_ByteSetValue
- .text.FIO_ByteClearValue
-                0x00001e98       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001e98                FIO_ByteClearValue
- .text.FIO_ByteReadValue
-                0x00001ed4       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
-                0x00001ed4                FIO_ByteReadValue
- .text          0x00001f14        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00000b70       0x90 serialIO.o
+                0x00000b70                serial_init
+ .text          0x00000c00        0x0 i2cIO.o
  .text.NVIC_EnableIRQ
-                0x00001f14       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00000c00       0x38 i2cIO.o
+ .text.i2c_init
+                0x00000c38       0x68 i2cIO.o
+                0x00000c38                i2c_init
+ .text.i2cTransferM
+                0x00000ca0       0x4c i2cIO.o
+                0x00000ca0                i2cTransferM
+ .text.listAllDevices
+                0x00000cec       0x9c i2cIO.o
+                0x00000cec                listAllDevices
+ .text.readKeyPressed
+                0x00000d88      0x1c0 i2cIO.o
+                0x00000d88                readKeyPressed
+ .text.EINT3_IRQHandler
+                0x00000f48       0x7c i2cIO.o
+                0x00000f48                EINT3_IRQHandler
+ .text.registerKeyboardInterrupt
+                0x00000fc4       0x40 i2cIO.o
+                0x00000fc4                registerKeyboardInterrupt
+ .text          0x00001004        0x0 main.o
+ .text.stage1   0x00001004        0xc main.o
+                0x00001004                stage1
+ .text.stage2   0x00001010       0x18 main.o
+                0x00001010                stage2
+ .text.stage3   0x00001028        0xc main.o
+                0x00001028                stage3
+ .text.stage4   0x00001034        0xc main.o
+                0x00001034                stage4
+ .text.main     0x00001040       0x24 main.o
+                0x00001040                main
+ .text          0x00001064        0x0 sysTick.o
+ .text.delayS   0x00001064       0x6c sysTick.o
+                0x00001064                delayS
+ .text.delayMS  0x000010d0       0x5c sysTick.o
+                0x000010d0                delayMS
+ .text.SysTick_Handler
+                0x0000112c       0x58 sysTick.o
+                0x0000112c                SysTick_Handler
+ .text.SETUP_Systick
+                0x00001184       0x2c sysTick.o
+                0x00001184                SETUP_Systick
+ .text          0x000011b0        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .text          0x000011b0        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .text.SystemCoreClockUpdate
+                0x000011b0      0x228 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x000011b0                SystemCoreClockUpdate
+ .text.SystemInit
+                0x000013d8      0x240 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x000013d8                SystemInit
+ .text          0x00001618       0x14 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+                0x00001618                NMI_Handler
+                0x0000161a                HardFault_Handler
+                0x0000161c                MemManage_Handler
+                0x0000161e                BusFault_Handler
+                0x00001620                UsageFault_Handler
+                0x00001622                SVC_Handler
+                0x00001624                DebugMon_Handler
+                0x00001626                PendSV_Handler
+                0x0000162a                TIMER2_IRQHandler
+                0x0000162a                RIT_IRQHandler
+                0x0000162a                I2C0_IRQHandler
+                0x0000162a                USBActivity_IRQHandler
+                0x0000162a                PWM1_IRQHandler
+                0x0000162a                I2C1_IRQHandler
+                0x0000162a                EINT2_IRQHandler
+                0x0000162a                UART1_IRQHandler
+                0x0000162a                CANActivity_IRQHandler
+                0x0000162a                TIMER3_IRQHandler
+                0x0000162a                UART0_IRQHandler
+                0x0000162a                PLL0_IRQHandler
+                0x0000162a                CAN_IRQHandler
+                0x0000162a                PLL1_IRQHandler
+                0x0000162a                SSP0_IRQHandler
+                0x0000162a                I2S_IRQHandler
+                0x0000162a                I2C2_IRQHandler
+                0x0000162a                RTC_IRQHandler
+                0x0000162a                TIMER0_IRQHandler
+                0x0000162a                SPI_IRQHandler
+                0x0000162a                EINT1_IRQHandler
+                0x0000162a                TIMER1_IRQHandler
+                0x0000162a                UART2_IRQHandler
+                0x0000162a                Default_Handler
+                0x0000162a                ADC_IRQHandler
+                0x0000162a                SSP1_IRQHandler
+                0x0000162a                USB_IRQHandler
+                0x0000162a                BOD_IRQHandler
+                0x0000162a                WDT_IRQHandler
+                0x0000162a                QEI_IRQHandler
+                0x0000162a                EINT0_IRQHandler
+                0x0000162a                DMA_IRQHandler
+                0x0000162a                UART3_IRQHandler
+                0x0000162a                MCPWM_IRQHandler
+                0x0000162a                ENET_IRQHandler
+ .text          0x0000162c       0x30 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                0x0000162c                __cs3_premain
+ .text.cs3.init
+                0x0000165c       0x50 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                0x0000165c                __cs3_start_c
+ .text          0x000016ac        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .text.cs3.init
+                0x000016ac       0x10 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+                0x000016ac                _start
+ .text          0x000016bc       0x50 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+                0x000016bc                __libc_init_array
+ .text          0x0000170c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .text.GPIO_GetPointer
+                0x0000170c       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .text.FIO_HalfWordGetPointer
+                0x00001788       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .text.FIO_ByteGetPointer
+                0x00001804       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .text.GPIO_SetDir
+                0x00001880       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001880                GPIO_SetDir
+ .text.GPIO_SetValue
+                0x000018d0       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x000018d0                GPIO_SetValue
+ .text.GPIO_ClearValue
+                0x000018fc       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x000018fc                GPIO_ClearValue
+ .text.GPIO_ReadValue
+                0x00001928       0x30 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001928                GPIO_ReadValue
+ .text.GPIO_IntCmd
+                0x00001958       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001958                GPIO_IntCmd
+ .text.GPIO_GetIntStatus
+                0x000019dc       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x000019dc                GPIO_GetIntStatus
+ .text.GPIO_ClearInt
+                0x00001a9c       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001a9c                GPIO_ClearInt
+ .text.FIO_SetDir
+                0x00001adc       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001adc                FIO_SetDir
+ .text.FIO_SetValue
+                0x00001b04       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001b04                FIO_SetValue
+ .text.FIO_ClearValue
+                0x00001b24       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001b24                FIO_ClearValue
+ .text.FIO_ReadValue
+                0x00001b44       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001b44                FIO_ReadValue
+ .text.FIO_IntCmd
+                0x00001b64       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001b64                FIO_IntCmd
+ .text.FIO_GetIntStatus
+                0x00001b8c       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001b8c                FIO_GetIntStatus
+ .text.FIO_ClearInt
+                0x00001bb8       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001bb8                FIO_ClearInt
+ .text.FIO_SetMask
+                0x00001bd8       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001bd8                FIO_SetMask
+ .text.FIO_HalfWordSetDir
+                0x00001c28       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001c28                FIO_HalfWordSetDir
+ .text.FIO_HalfWordSetMask
+                0x00001cc4       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001cc4                FIO_HalfWordSetMask
+ .text.FIO_HalfWordSetValue
+                0x00001d60       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001d60                FIO_HalfWordSetValue
+ .text.FIO_HalfWordClearValue
+                0x00001da0       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001da0                FIO_HalfWordClearValue
+ .text.FIO_HalfWordReadValue
+                0x00001de0       0x44 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001de0                FIO_HalfWordReadValue
+ .text.FIO_ByteSetDir
+                0x00001e24       0x70 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001e24                FIO_ByteSetDir
+ .text.FIO_ByteSetMask
+                0x00001e94       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001e94                FIO_ByteSetMask
+ .text.FIO_ByteSetValue
+                0x00001f0c       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001f0c                FIO_ByteSetValue
+ .text.FIO_ByteClearValue
+                0x00001f48       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001f48                FIO_ByteClearValue
+ .text.FIO_ByteReadValue
+                0x00001f84       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00001f84                FIO_ByteReadValue
+ .text          0x00001fc4        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .text.NVIC_EnableIRQ
+                0x00001fc4       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.NVIC_DisableIRQ
-                0x00001f4c       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00001ffc       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_getNum
-                0x00001f88       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002038       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_Start
-                0x00001fdc       0x44 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000208c       0x44 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_Stop
-                0x00002020       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000020d0       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_SendByte
-                0x00002058       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002108       0x50 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_GetByte
-                0x000020a8       0x5c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002158       0x5c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_SetClock
-                0x00002104       0xc8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000021b4       0xc8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .text.I2C_Init
-                0x000021cc       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x000021cc                I2C_Init
+                0x0000227c       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000227c                I2C_Init
  .text.I2C_DeInit
-                0x000022a4       0xa4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x000022a4                I2C_DeInit
- .text.I2C_Cmd  0x00002348       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00002348                I2C_Cmd
+                0x00002354       0xa4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002354                I2C_DeInit
+ .text.I2C_Cmd  0x000023f8       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000023f8                I2C_Cmd
  .text.I2C_IntCmd
-                0x000023cc       0xa8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x000023cc                I2C_IntCmd
+                0x0000247c       0xa8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000247c                I2C_IntCmd
  .text.I2C_MasterHandler
-                0x00002474      0x3d8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00002474                I2C_MasterHandler
+                0x00002524      0x3d8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002524                I2C_MasterHandler
  .text.I2C_SlaveHandler
-                0x0000284c      0x1d8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x0000284c                I2C_SlaveHandler
+                0x000028fc      0x1d8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000028fc                I2C_SlaveHandler
  .text.I2C_MasterTransferData
-                0x00002a24      0x33c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00002a24                I2C_MasterTransferData
+                0x00002ad4      0x33c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002ad4                I2C_MasterTransferData
  .text.I2C_SlaveTransferData
-                0x00002d60      0x268 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00002d60                I2C_SlaveTransferData
+                0x00002e10      0x268 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00002e10                I2C_SlaveTransferData
  .text.I2C_SetOwnSlaveAddr
-                0x00002fc8      0x118 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00002fc8                I2C_SetOwnSlaveAddr
+                0x00003078      0x118 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00003078                I2C_SetOwnSlaveAddr
  .text.I2C_MonitorModeConfig
-                0x000030e0       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x000030e0                I2C_MonitorModeConfig
+                0x00003190       0x9c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00003190                I2C_MonitorModeConfig
  .text.I2C_MonitorModeCmd
-                0x0000317c       0xb0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x0000317c                I2C_MonitorModeCmd
+                0x0000322c       0xb0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000322c                I2C_MonitorModeCmd
  .text.I2C_MonitorGetDatabuffer
-                0x0000322c       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x0000322c                I2C_MonitorGetDatabuffer
+                0x000032dc       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000032dc                I2C_MonitorGetDatabuffer
  .text.I2C_MonitorHandler
-                0x00003280       0x6c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x00003280                I2C_MonitorHandler
+                0x00003330       0x6c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x00003330                I2C_MonitorHandler
  .text.I2C_MasterTransferComplete
-                0x000032ec       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x000032ec                I2C_MasterTransferComplete
+                0x0000339c       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000339c                I2C_MasterTransferComplete
  .text.I2C_SlaveTransferComplete
-                0x0000332c       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
-                0x0000332c                I2C_SlaveTransferComplete
- .text          0x0000336c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+                0x000033dc       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000033dc                I2C_SlaveTransferComplete
+ .text          0x0000341c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
  .text.check_failed
-                0x0000336c        0xc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
-                0x0000336c                check_failed
- .text          0x00003378        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x0000341c        0xc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+                0x0000341c                check_failed
+ .text          0x00003428        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .text.set_PinFunc
-                0x00003378       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x00003428       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .text.set_ResistorMode
-                0x00003418       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x000034c8       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .text.set_OpenDrainMode
-                0x000034b8       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x00003568       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .text.PINSEL_ConfigTraceFunc
-                0x00003538       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
-                0x00003538                PINSEL_ConfigTraceFunc
+                0x000035e8       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x000035e8                PINSEL_ConfigTraceFunc
  .text.PINSEL_SetI2C0Pins
-                0x0000358c       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
-                0x0000358c                PINSEL_SetI2C0Pins
+                0x0000363c       0x3c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x0000363c                PINSEL_SetI2C0Pins
  .text.PINSEL_ConfigPin
-                0x000035c8       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
-                0x000035c8                PINSEL_ConfigPin
- .text          0x0000361c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x00003678       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x00003678                PINSEL_ConfigPin
+ .text          0x000036cc        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
  .text.SYSTICK_InternalInit
-                0x0000361c       0xb0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x0000361c                SYSTICK_InternalInit
+                0x000036cc       0xb0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x000036cc                SYSTICK_InternalInit
  .text.SYSTICK_ExternalInit
-                0x000036cc       0xc4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x000036cc                SYSTICK_ExternalInit
+                0x0000377c       0xc4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x0000377c                SYSTICK_ExternalInit
  .text.SYSTICK_Cmd
-                0x00003790       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x00003790                SYSTICK_Cmd
+                0x00003840       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x00003840                SYSTICK_Cmd
  .text.SYSTICK_IntCmd
-                0x000037f8       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x000037f8                SYSTICK_IntCmd
+                0x000038a8       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x000038a8                SYSTICK_IntCmd
  .text.SYSTICK_GetCurrentValue
-                0x00003860       0x18 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x00003860                SYSTICK_GetCurrentValue
+                0x00003910       0x18 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x00003910                SYSTICK_GetCurrentValue
  .text.SYSTICK_ClearCounterFlag
-                0x00003878       0x24 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
-                0x00003878                SYSTICK_ClearCounterFlag
- .text          0x0000389c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00003928       0x24 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x00003928                SYSTICK_ClearCounterFlag
+ .text          0x0000394c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .text.uart_set_divisors
-                0x0000389c      0x26c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000394c      0x26c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .text.UART_Init
-                0x00003b08      0x368 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00003b08                UART_Init
+                0x00003bb8      0x368 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00003bb8                UART_Init
  .text.UART_DeInit
-                0x00003e70       0xcc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00003e70                UART_DeInit
+                0x00003f20       0xcc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00003f20                UART_DeInit
  .text.UART_ConfigStructInit
-                0x00003f3c       0x34 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00003f3c                UART_ConfigStructInit
+                0x00003fec       0x34 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00003fec                UART_ConfigStructInit
  .text.UART_SendByte
-                0x00003f70       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00003f70                UART_SendByte
+                0x00004020       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004020                UART_SendByte
  .text.UART_ReceiveByte
-                0x00003fe8       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00003fe8                UART_ReceiveByte
+                0x00004098       0x78 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004098                UART_ReceiveByte
  .text.UART_Send
-                0x00004060      0x10c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004060                UART_Send
+                0x00004110      0x10c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004110                UART_Send
  .text.UART_Receive
-                0x0000416c       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x0000416c                UART_Receive
+                0x0000421c       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000421c                UART_Receive
  .text.UART_ForceBreak
-                0x00004244       0x88 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004244                UART_ForceBreak
+                0x000042f4       0x88 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x000042f4                UART_ForceBreak
  .text.UART_IntConfig
-                0x000042cc      0x1d0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x000042cc                UART_IntConfig
+                0x0000437c      0x1d0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000437c                UART_IntConfig
  .text.UART_GetLineStatus
-                0x0000449c       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x0000449c                UART_GetLineStatus
+                0x0000454c       0x7c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000454c                UART_GetLineStatus
  .text.UART_GetIntId
-                0x00004518       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004518                UART_GetIntId
+                0x000045c8       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x000045c8                UART_GetIntId
  .text.UART_CheckBusy
-                0x00004580       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004580                UART_CheckBusy
+                0x00004630       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004630                UART_CheckBusy
  .text.UART_FIFOConfig
-                0x000045ac      0x184 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x000045ac                UART_FIFOConfig
+                0x0000465c      0x184 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000465c                UART_FIFOConfig
  .text.UART_FIFOConfigStructInit
-                0x00004730       0x34 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004730                UART_FIFOConfigStructInit
+                0x000047e0       0x34 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x000047e0                UART_FIFOConfigStructInit
  .text.UART_ABCmd
-                0x00004764      0x15c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004764                UART_ABCmd
+                0x00004814      0x15c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004814                UART_ABCmd
  .text.UART_ABClearIntPending
-                0x000048c0       0x88 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x000048c0                UART_ABClearIntPending
+                0x00004970       0x88 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004970                UART_ABClearIntPending
  .text.UART_TxCmd
-                0x00004948       0xe8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004948                UART_TxCmd
+                0x000049f8       0xe8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x000049f8                UART_TxCmd
  .text.UART_IrDAInvtInputCmd
-                0x00004a30       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004a30                UART_IrDAInvtInputCmd
+                0x00004ae0       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004ae0                UART_IrDAInvtInputCmd
  .text.UART_IrDACmd
-                0x00004ab4       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004ab4                UART_IrDACmd
+                0x00004b64       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004b64                UART_IrDACmd
  .text.UART_IrDAPulseDivConfig
-                0x00004b34       0xac /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004b34                UART_IrDAPulseDivConfig
+                0x00004be4       0xac /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004be4                UART_IrDAPulseDivConfig
  .text.UART_FullModemForcePinState
-                0x00004be0       0xcc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004be0                UART_FullModemForcePinState
+                0x00004c90       0xcc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004c90                UART_FullModemForcePinState
  .text.UART_FullModemConfigMode
-                0x00004cac       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004cac                UART_FullModemConfigMode
+                0x00004d5c       0xd8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004d5c                UART_FullModemConfigMode
  .text.UART_FullModemGetStatus
-                0x00004d84       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004d84                UART_FullModemGetStatus
+                0x00004e34       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004e34                UART_FullModemGetStatus
  .text.UART_RS485Config
-                0x00004dbc      0x1bc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004dbc                UART_RS485Config
+                0x00004e6c      0x1bc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00004e6c                UART_RS485Config
  .text.UART_RS485ReceiverCmd
-                0x00004f78       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004f78                UART_RS485ReceiverCmd
+                0x00005028       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00005028                UART_RS485ReceiverCmd
  .text.UART_RS485Send
-                0x00004fc0       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00004fc0                UART_RS485Send
+                0x00005070       0x84 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00005070                UART_RS485Send
  .text.UART_RS485SendSlvAddr
-                0x00005044       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x00005044                UART_RS485SendSlvAddr
+                0x000050f4       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x000050f4                UART_RS485SendSlvAddr
  .text.UART_RS485SendData
-                0x0000506c       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
-                0x0000506c                UART_RS485SendData
- .text          0x00005094        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x0000511c       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000511c                UART_RS485SendData
+ .text          0x00005144        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
  .text.CLKPWR_SetPCLKDiv
-                0x00005094       0xd4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x00005094                CLKPWR_SetPCLKDiv
+                0x00005144       0xd4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x00005144                CLKPWR_SetPCLKDiv
  .text.CLKPWR_GetPCLKSEL
-                0x00005168       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x00005168                CLKPWR_GetPCLKSEL
+                0x00005218       0x54 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x00005218                CLKPWR_GetPCLKSEL
  .text.CLKPWR_GetPCLK
-                0x000051bc       0x70 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x000051bc                CLKPWR_GetPCLK
+                0x0000526c       0x70 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x0000526c                CLKPWR_GetPCLK
  .text.CLKPWR_ConfigPPWR
-                0x0000522c       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x0000522c                CLKPWR_ConfigPPWR
+                0x000052dc       0x80 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x000052dc                CLKPWR_ConfigPPWR
  .text.CLKPWR_Sleep
-                0x000052ac       0x1c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x000052ac                CLKPWR_Sleep
+                0x0000535c       0x1c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x0000535c                CLKPWR_Sleep
  .text.CLKPWR_DeepSleep
-                0x000052c8       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x000052c8                CLKPWR_DeepSleep
+                0x00005378       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x00005378                CLKPWR_DeepSleep
  .text.CLKPWR_PowerDown
-                0x000052f4       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x000052f4                CLKPWR_PowerDown
+                0x000053a4       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x000053a4                CLKPWR_PowerDown
  .text.CLKPWR_DeepPowerDown
-                0x00005320       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
-                0x00005320                CLKPWR_DeepPowerDown
- .text          0x0000534c      0x21c /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_addsubsf3.o)
-                0x0000534c                __aeabi_frsub
-                0x00005354                __subsf3
-                0x00005354                __aeabi_fsub
-                0x00005358                __aeabi_fadd
-                0x00005358                __addsf3
-                0x000054b8                __aeabi_ui2f
-                0x000054b8                __floatunsisf
-                0x000054c0                __aeabi_i2f
-                0x000054c0                __floatsisf
-                0x000054dc                __floatundisf
-                0x000054dc                __aeabi_ul2f
-                0x000054ec                __floatdisf
-                0x000054ec                __aeabi_l2f
- .text          0x00005568       0xec /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_cmpsf2.o)
-                0x00005568                __gtsf2
-                0x00005568                __gesf2
-                0x00005570                __lesf2
-                0x00005570                __ltsf2
-                0x00005578                __nesf2
-                0x00005578                __eqsf2
-                0x00005578                __cmpsf2
-                0x000055d8                __aeabi_cfrcmple
-                0x000055e0                __aeabi_cfcmple
-                0x000055e0                __aeabi_cfcmpeq
-                0x000055f0                __aeabi_fcmpeq
-                0x00005604                __aeabi_fcmplt
-                0x00005618                __aeabi_fcmple
-                0x0000562c                __aeabi_fcmpge
-                0x00005640                __aeabi_fcmpgt
- .text          0x00005654        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtend.o
- .text          0x00005654        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
+                0x000053d0       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x000053d0                CLKPWR_DeepPowerDown
+ .text          0x000053fc      0x21c /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_addsubsf3.o)
+                0x000053fc                __aeabi_frsub
+                0x00005404                __subsf3
+                0x00005404                __aeabi_fsub
+                0x00005408                __aeabi_fadd
+                0x00005408                __addsf3
+                0x00005568                __aeabi_ui2f
+                0x00005568                __floatunsisf
+                0x00005570                __aeabi_i2f
+                0x00005570                __floatsisf
+                0x0000558c                __floatundisf
+                0x0000558c                __aeabi_ul2f
+                0x0000559c                __floatdisf
+                0x0000559c                __aeabi_l2f
+ .text          0x00005618       0xec /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_cmpsf2.o)
+                0x00005618                __gtsf2
+                0x00005618                __gesf2
+                0x00005620                __lesf2
+                0x00005620                __ltsf2
+                0x00005628                __nesf2
+                0x00005628                __eqsf2
+                0x00005628                __cmpsf2
+                0x00005688                __aeabi_cfrcmple
+                0x00005690                __aeabi_cfcmple
+                0x00005690                __aeabi_cfcmpeq
+                0x000056a0                __aeabi_fcmpeq
+                0x000056b4                __aeabi_fcmplt
+                0x000056c8                __aeabi_fcmple
+                0x000056dc                __aeabi_fcmpge
+                0x000056f0                __aeabi_fcmpgt
+ .text          0x00005704        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtend.o
+ .text          0x00005704        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -581,80 +588,88 @@ END GROUP
  *(.vfp11_veneer)
  .vfp11_veneer  0x00000000        0x0 linker stubs
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata.C.20.3013
-                0x00005654        0x4 lcd.o
- .rodata        0x00005658       0xb0 i2cIO.o
- .rodata        0x00005708       0x1c main.o
- .rodata        0x00005724       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .rodata        0x00005734       0x14 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .rodata        0x00005748       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .rodata.C.20.3021
+                0x00005704        0x4 lcd.o
+ .rodata        0x00005708       0x70 i2cIO.o
+ .rodata.C.1.3331
+                0x00005778        0x4 i2cIO.o
+ .rodata.C.2.3332
+                0x0000577c        0x4 i2cIO.o
+ .rodata.C.3.3333
+                0x00005780        0x4 i2cIO.o
+ .rodata.C.4.3334
+                0x00005784        0x4 i2cIO.o
+ .rodata        0x00005788       0x1c main.o
+ .rodata        0x000057a4       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .rodata        0x000057b4       0x14 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .rodata        0x000057c8       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  .ARM.extab.cs3.reset
-                0x00005758        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+                0x000057d8        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
-                0x00005758                . = ALIGN (0x4)
+                0x000057d8                . = ALIGN (0x4)
  *(.init)
- .init          0x00005758        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crti.o
-                0x00005758                _init
- .init          0x0000575c        0x8 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
-                0x00005764                . = ALIGN (0x4)
-                0x00005764                __preinit_array_start = .
+ .init          0x000057d8        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crti.o
+                0x000057d8                _init
+ .init          0x000057dc        0x8 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
+                0x000057e4                . = ALIGN (0x4)
+                0x000057e4                __preinit_array_start = .
  *(.preinit_array)
-                0x00005764                __preinit_array_end = .
-                0x00005764                . = ALIGN (0x4)
-                0x00005764                __init_array_start = .
+                0x000057e4                __preinit_array_end = .
+                0x000057e4                . = ALIGN (0x4)
+                0x000057e4                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x00005764        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtbegin.o
-                0x00005768                __init_array_end = .
-                0x00005768                . = ALIGN (0x4)
+ .init_array    0x000057e4        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtbegin.o
+                0x000057e8                __init_array_end = .
+                0x000057e8                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00005768                . = ALIGN (0x4)
+                0x000057e8                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00005768        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crti.o
-                0x00005768                _fini
- .fini          0x0000576c        0x8 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
-                0x00005774                . = ALIGN (0x4)
-                0x00005774                __fini_array_start = .
+ .fini          0x000057e8        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crti.o
+                0x000057e8                _fini
+ .fini          0x000057ec        0x8 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
+                0x000057f4                . = ALIGN (0x4)
+                0x000057f4                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00005774        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtbegin.o
+ .fini_array    0x000057f4        0x4 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00005778                __fini_array_end = .
+                0x000057f8                __fini_array_end = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00005778                . = ALIGN (0x4)
-                0x00005778                __cs3_regions = .
-                0x00005778        0x4 LONG 0x0
-                0x0000577c        0x4 LONG 0x5798 __cs3_region_init_ram
-                0x00005780        0x4 LONG 0x10000000 __cs3_region_start_ram
-                0x00005784        0x4 LONG 0x10 __cs3_region_init_size_ram
-                0x00005788        0x4 LONG 0x48 __cs3_region_zero_size_ram
-                0x0000578c                __exidx_start = .
+                0x000057f8                . = ALIGN (0x4)
+                0x000057f8                __cs3_regions = .
+                0x000057f8        0x4 LONG 0x0
+                0x000057fc        0x4 LONG 0x5818 __cs3_region_init_ram
+                0x00005800        0x4 LONG 0x10000000 __cs3_region_start_ram
+                0x00005804        0x4 LONG 0x10 __cs3_region_init_size_ram
+                0x00005808        0x4 LONG 0x48 __cs3_region_zero_size_ram
+                0x0000580c                __exidx_start = .
 
-.v4_bx          0x0000578c        0x0
+.v4_bx          0x0000580c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.ARM.exidx      0x0000578c        0x8
+.ARM.exidx      0x0000580c        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.cs3.reset
-                0x0000578c        0x8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
-                0x00005794                __exidx_end = .
+                0x0000580c        0x8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+                0x00005814                __exidx_end = .
 
-.text.align     0x00005794        0x4
-                0x00005798                . = ALIGN (0x8)
- *fill*         0x00005794        0x4 00
-                0x00005798                _etext = .
+.text.align     0x00005814        0x4
+                0x00005818                . = ALIGN (0x8)
+ *fill*         0x00005814        0x4 00
+                0x00005818                _etext = .
                 0x00080000                __cs3_region_size_rom = 0x80000
                 0x00000001                __cs3_region_num = 0x1
 
-.data           0x10000000       0x10 load address 0x00005798
+.data           0x10000000       0x10 load address 0x00005818
                 0x10000000                __cs3_region_start_ram = .
  *(.cs3.region-head.ram)
  *(.jcr)
@@ -672,36 +687,34 @@ END GROUP
  .data          0x10000008        0x0 stringProcess.o
  .data          0x10000008        0x0 serialIO.o
  .data          0x10000008        0x0 i2cIO.o
- .data.interruptStatus
-                0x10000008        0x4 i2cIO.o
-                0x10000008                interruptStatus
- .data          0x1000000c        0x0 main.o
- .data          0x1000000c        0x0 sysTick.o
- .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
- .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .data          0x10000008        0x0 main.o
+ .data          0x10000008        0x0 sysTick.o
+ .data          0x10000008        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .data          0x10000008        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
  .data.SystemCoreClock
-                0x1000000c        0x4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
-                0x1000000c                SystemCoreClock
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
- .data          0x10000010        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
- .data          0x10000010        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
- .data          0x10000010        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .data          0x10000010        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
- .data          0x10000010        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_addsubsf3.o)
- .data          0x10000010        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_cmpsf2.o)
- .data          0x10000010        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtend.o
- .data          0x10000010        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
+                0x10000008        0x4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x10000008                SystemCoreClock
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+ .data          0x1000000c        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .data          0x1000000c        0x0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .data          0x1000000c        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_addsubsf3.o)
+ .data          0x1000000c        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/libgcc.a(_arm_cmpsf2.o)
+ .data          0x1000000c        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtend.o
+ .data          0x1000000c        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crtn.o
  *(.ram)
                 0x10000010                . = ALIGN (0x8)
+ *fill*         0x1000000c        0x4 00
                 0x10000010                _edata = .
 
-.bss            0x10000010       0x48 load address 0x000057a8
+.bss            0x10000010       0x48 load address 0x00005828
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0x10000010        0x0 /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gcc/arm-none-eabi/4.5.1/thumb2/crti.o
@@ -770,7 +783,7 @@ END GROUP
                 0x10007f00                __cs3_stack_mem
                 0x10008000                _estack = .
                 0x10008000                PROVIDE (estack, .)
-                0x00005798                __cs3_region_init_ram = LOADADDR (.data)
+                0x00005818                __cs3_region_init_ram = LOADADDR (.data)
                 0x00000010                __cs3_region_init_size_ram = (_edata - __cs3_region_start_ram)
                 0x00000048                __cs3_region_zero_size_ram = (_end - _edata)
                 0x00008000                __cs3_region_size_ram = 0x8000
@@ -813,207 +826,207 @@ END GROUP
  .comment       0x00000000       0x2b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .comment       0x00000000       0x2b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_aranges  0x00000000      0x5b8
+.debug_aranges  0x00000000      0x5d0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x38 led.o
  .debug_aranges
-                0x00000038       0x38 lcd.o
+                0x00000038       0x40 lcd.o
  .debug_aranges
-                0x00000070       0x30 stringProcess.o
+                0x00000078       0x30 stringProcess.o
  .debug_aranges
-                0x000000a0       0x40 serialIO.o
+                0x000000a8       0x40 serialIO.o
  .debug_aranges
-                0x000000e0       0x40 i2cIO.o
+                0x000000e8       0x50 i2cIO.o
  .debug_aranges
-                0x00000120       0x40 main.o
+                0x00000138       0x40 main.o
  .debug_aranges
-                0x00000160       0x38 sysTick.o
+                0x00000178       0x38 sysTick.o
  .debug_aranges
-                0x00000198       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x000001b0       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
  .debug_aranges
-                0x000001c0       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+                0x000001d8       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
  .debug_aranges
-                0x000001e8       0xf8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00000200       0xf8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
  .debug_aranges
-                0x000002e0       0xd0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x000002f8       0xd0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .debug_aranges
-                0x000003b0       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+                0x000003c8       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
  .debug_aranges
-                0x000003d0       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x000003e8       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .debug_aranges
-                0x00000418       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x00000430       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
  .debug_aranges
-                0x00000460      0x100 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x00000478      0x100 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .debug_aranges
-                0x00000560       0x58 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x00000578       0x58 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
 .debug_pubnames
-                0x00000000      0xabb
+                0x00000000      0xac6
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x46 led.o
  .debug_pubnames
-                0x00000046       0x54 lcd.o
+                0x00000046       0x5f lcd.o
  .debug_pubnames
-                0x0000009a       0x44 stringProcess.o
+                0x000000a5       0x44 stringProcess.o
  .debug_pubnames
-                0x000000de       0x89 serialIO.o
+                0x000000e9       0x89 serialIO.o
  .debug_pubnames
-                0x00000167       0xaa i2cIO.o
+                0x00000172       0xaa i2cIO.o
  .debug_pubnames
-                0x00000211       0x47 main.o
+                0x0000021c       0x47 main.o
  .debug_pubnames
-                0x00000258       0x66 sysTick.o
+                0x00000263       0x66 sysTick.o
  .debug_pubnames
-                0x000002be       0x4f /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x000002c9       0x4f /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
  .debug_pubnames
-                0x0000030d      0x203 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x00000318      0x203 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
  .debug_pubnames
-                0x00000510      0x163 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000051b      0x163 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .debug_pubnames
-                0x00000673       0x23 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+                0x0000067e       0x23 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
  .debug_pubnames
-                0x00000696       0x59 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x000006a1       0x59 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .debug_pubnames
-                0x000006ef       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x000006fa       0xa0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
  .debug_pubnames
-                0x0000078f      0x271 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000079a      0x271 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .debug_pubnames
-                0x00000a00       0xbb /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x00000a0b       0xbb /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_info     0x00000000     0x55b4
+.debug_info     0x00000000     0x5868
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x126 led.o
- .debug_info    0x00000126      0x32e lcd.o
- .debug_info    0x00000454      0x1e3 stringProcess.o
- .debug_info    0x00000637      0x59e serialIO.o
- .debug_info    0x00000bd5      0x564 i2cIO.o
- .debug_info    0x00001139       0xdf main.o
- .debug_info    0x00001218      0x1a9 sysTick.o
- .debug_info    0x000013c1       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
- .debug_info    0x00001429      0x509 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_info    0x00001932       0xc1 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
- .debug_info    0x000019f3      0xe29 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_info    0x0000281c      0xdac /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_info    0x000035c8       0xc9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_info    0x00003691      0x4b5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_info    0x00003b46      0x25c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_info    0x00003da2     0x114d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_info    0x00004eef      0x6c5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_info    0x00000126      0x364 lcd.o
+ .debug_info    0x0000048a      0x1e3 stringProcess.o
+ .debug_info    0x0000066d      0x59e serialIO.o
+ .debug_info    0x00000c0b      0x7e2 i2cIO.o
+ .debug_info    0x000013ed       0xdf main.o
+ .debug_info    0x000014cc      0x1a9 sysTick.o
+ .debug_info    0x00001675       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .debug_info    0x000016dd      0x509 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_info    0x00001be6       0xc1 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+ .debug_info    0x00001ca7      0xe29 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_info    0x00002ad0      0xdac /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_info    0x0000387c       0xc9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_info    0x00003945      0x4b5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_info    0x00003dfa      0x25c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_info    0x00004056     0x114d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_info    0x000051a3      0x6c5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_abbrev   0x00000000     0x117b
+.debug_abbrev   0x00000000     0x1218
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x8a led.o
  .debug_abbrev  0x0000008a      0x111 lcd.o
  .debug_abbrev  0x0000019b       0xcf stringProcess.o
  .debug_abbrev  0x0000026a      0x180 serialIO.o
- .debug_abbrev  0x000003ea      0x153 i2cIO.o
- .debug_abbrev  0x0000053d       0x54 main.o
- .debug_abbrev  0x00000591       0xd1 sysTick.o
- .debug_abbrev  0x00000662       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
- .debug_abbrev  0x0000068a      0x102 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_abbrev  0x0000078c       0x12 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
- .debug_abbrev  0x0000079e      0x1c9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_abbrev  0x00000967      0x214 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_abbrev  0x00000b7b       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_abbrev  0x00000be3      0x11d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_abbrev  0x00000d00      0x118 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_abbrev  0x00000e18      0x1ce /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_abbrev  0x00000fe6      0x195 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_abbrev  0x000003ea      0x1f0 i2cIO.o
+ .debug_abbrev  0x000005da       0x54 main.o
+ .debug_abbrev  0x0000062e       0xd1 sysTick.o
+ .debug_abbrev  0x000006ff       0x28 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .debug_abbrev  0x00000727      0x102 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_abbrev  0x00000829       0x12 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+ .debug_abbrev  0x0000083b      0x1c9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_abbrev  0x00000a04      0x214 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_abbrev  0x00000c18       0x68 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_abbrev  0x00000c80      0x11d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_abbrev  0x00000d9d      0x118 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_abbrev  0x00000eb5      0x1ce /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_abbrev  0x00001083      0x195 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_line     0x00000000     0x271f
+.debug_line     0x00000000     0x278f
  *(.debug_line)
  .debug_line    0x00000000      0x132 led.o
- .debug_line    0x00000132      0x1b8 lcd.o
- .debug_line    0x000002ea      0x136 stringProcess.o
- .debug_line    0x00000420      0x196 serialIO.o
- .debug_line    0x000005b6      0x1e4 i2cIO.o
- .debug_line    0x0000079a       0x80 main.o
- .debug_line    0x0000081a      0x15c sysTick.o
- .debug_line    0x00000976       0x1d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
- .debug_line    0x00000993      0x1e4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_line    0x00000b77       0xb1 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
- .debug_line    0x00000c28      0x449 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_line    0x00001071      0x67c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_line    0x000016ed       0xc4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_line    0x000017b1      0x220 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_line    0x000019d1      0x22c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_line    0x00001bfd      0x888 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_line    0x00002485      0x29a /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_line    0x00000132      0x1cb lcd.o
+ .debug_line    0x000002fd      0x136 stringProcess.o
+ .debug_line    0x00000433      0x196 serialIO.o
+ .debug_line    0x000005c9      0x23f i2cIO.o
+ .debug_line    0x00000808       0x82 main.o
+ .debug_line    0x0000088a      0x15c sysTick.o
+ .debug_line    0x000009e6       0x1d /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .debug_line    0x00000a03      0x1e4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_line    0x00000be7       0xb1 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+ .debug_line    0x00000c98      0x449 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_line    0x000010e1      0x67c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_line    0x0000175d       0xc4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_line    0x00001821      0x220 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_line    0x00001a41      0x22c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_line    0x00001c6d      0x888 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_line    0x000024f5      0x29a /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_frame    0x00000000     0x1134
+.debug_frame    0x00000000     0x1190
  *(.debug_frame)
  .debug_frame   0x00000000       0x88 led.o
- .debug_frame   0x00000088       0xa0 lcd.o
- .debug_frame   0x00000128       0x68 stringProcess.o
- .debug_frame   0x00000190       0xb8 serialIO.o
- .debug_frame   0x00000248       0xac i2cIO.o
- .debug_frame   0x000002f4       0x98 main.o
- .debug_frame   0x0000038c       0x88 sysTick.o
- .debug_frame   0x00000414       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_frame   0x00000454       0x40 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
- .debug_frame   0x00000494       0x2c /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
- .debug_frame   0x000004c0      0x378 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_frame   0x00000838      0x2d0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_frame   0x00000b08       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_frame   0x00000b34       0xbc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_frame   0x00000bf0       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_frame   0x00000cb0      0x3a0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_frame   0x00001050       0xe4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_frame   0x00000088       0xc0 lcd.o
+ .debug_frame   0x00000148       0x68 stringProcess.o
+ .debug_frame   0x000001b0       0xb8 serialIO.o
+ .debug_frame   0x00000268       0xe8 i2cIO.o
+ .debug_frame   0x00000350       0x98 main.o
+ .debug_frame   0x000003e8       0x88 sysTick.o
+ .debug_frame   0x00000470       0x40 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_frame   0x000004b0       0x40 /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .debug_frame   0x000004f0       0x2c /usr/local/pkg/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .debug_frame   0x0000051c      0x378 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_frame   0x00000894      0x2d0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_frame   0x00000b64       0x2c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_frame   0x00000b90       0xbc /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_frame   0x00000c4c       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_frame   0x00000d0c      0x3a0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_frame   0x000010ac       0xe4 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_str      0x00000000     0x1f17
+.debug_str      0x00000000     0x1f21
  *(.debug_str)
  .debug_str     0x00000000       0xc5 led.o
                                 0x106 (size before relaxing)
- .debug_str     0x000000c5       0xd7 lcd.o
-                                0x1ba (size before relaxing)
- .debug_str     0x0000019c       0x7c stringProcess.o
+ .debug_str     0x000000c5       0xe6 lcd.o
+                                0x1c9 (size before relaxing)
+ .debug_str     0x000001ab       0x7c stringProcess.o
                                 0x150 (size before relaxing)
- .debug_str     0x00000218      0x31c serialIO.o
+ .debug_str     0x00000227      0x31c serialIO.o
                                 0x428 (size before relaxing)
- .debug_str     0x00000534      0x22e i2cIO.o
-                                0x398 (size before relaxing)
- .debug_str     0x00000762       0x28 main.o
+ .debug_str     0x00000543      0x453 i2cIO.o
+                                0x5f4 (size before relaxing)
+ .debug_str     0x00000996       0x28 main.o
                                  0xe7 (size before relaxing)
- .debug_str     0x0000078a       0x58 sysTick.o
+ .debug_str     0x000009be       0x58 sysTick.o
                                 0x151 (size before relaxing)
- .debug_str     0x000007e2       0x42 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+ .debug_str     0x00000a16       0x42 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
                                  0xd2 (size before relaxing)
- .debug_str     0x00000824      0x1d9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_str     0x00000a58      0x1d9 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
                                 0x2d5 (size before relaxing)
- .debug_str     0x000009fd      0x457 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_str     0x00000c31      0x457 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
                                 0x545 (size before relaxing)
- .debug_str     0x00000e54      0x588 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_str     0x00001088      0x35e /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
                                 0x840 (size before relaxing)
- .debug_str     0x000013dc       0x30 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_str     0x000013e6       0x30 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
                                 0x107 (size before relaxing)
- .debug_str     0x0000140c      0x1fb /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_str     0x00001416      0x1fb /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
                                 0x359 (size before relaxing)
- .debug_str     0x00001607       0xb8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_str     0x00001611       0xb8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
                                 0x1e6 (size before relaxing)
- .debug_str     0x000016bf      0x79b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_str     0x000016c9      0x79b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
                                 0xb32 (size before relaxing)
- .debug_str     0x00001e5a       0xbd /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_str     0x00001e64       0xbd /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
                                 0x380 (size before relaxing)
 
-.debug_loc      0x00000000     0x1c56
+.debug_loc      0x00000000     0x1cfe
  *(.debug_loc)
  .debug_loc     0x00000000       0xc8 led.o
- .debug_loc     0x000000c8       0xe4 lcd.o
- .debug_loc     0x000001ac       0xa8 stringProcess.o
- .debug_loc     0x00000254      0x118 serialIO.o
- .debug_loc     0x0000036c      0x110 i2cIO.o
- .debug_loc     0x0000047c       0xdc main.o
- .debug_loc     0x00000558       0xd4 sysTick.o
- .debug_loc     0x0000062c       0x58 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_loc     0x00000684      0x620 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_loc     0x00000ca4      0x508 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_loc     0x000011ac       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_loc     0x000011e4      0x150 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_loc     0x00001334      0x138 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_loc     0x0000146c      0x65a /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_loc     0x00001ac6      0x190 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_loc     0x000000c8      0x11c lcd.o
+ .debug_loc     0x000001e4       0xa8 stringProcess.o
+ .debug_loc     0x0000028c      0x118 serialIO.o
+ .debug_loc     0x000003a4      0x180 i2cIO.o
+ .debug_loc     0x00000524       0xdc main.o
+ .debug_loc     0x00000600       0xd4 sysTick.o
+ .debug_loc     0x000006d4       0x58 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_loc     0x0000072c      0x620 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_loc     0x00000d4c      0x508 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_loc     0x00001254       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_loc     0x0000128c      0x150 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_loc     0x000013dc      0x138 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_loc     0x00001514      0x65a /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_loc     0x00001b6e      0x190 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1101,7 +1114,7 @@ LOAD /opt/york/cs/net/sourcery-g++-lite-arm-eabi-2010.09.51-i686-1/bin/../lib/gc
 OUTPUT(bin/mini2 elf32-littlearm)
 
 .debug_pubtypes
-                0x00000000      0x7fa
+                0x00000000      0x80a
  .debug_pubtypes
                 0x00000000       0x2a led.o
  .debug_pubtypes
@@ -1111,44 +1124,44 @@ OUTPUT(bin/mini2 elf32-littlearm)
  .debug_pubtypes
                 0x00000073       0xf7 serialIO.o
  .debug_pubtypes
-                0x0000016a       0x89 i2cIO.o
+                0x0000016a       0x99 i2cIO.o
  .debug_pubtypes
-                0x000001f3       0x12 main.o
+                0x00000203       0x12 main.o
  .debug_pubtypes
-                0x00000205       0x37 sysTick.o
+                0x00000215       0x37 sysTick.o
  .debug_pubtypes
-                0x0000023c       0x12 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
+                0x0000024c       0x12 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/core_cm3.o
  .debug_pubtypes
-                0x0000024e       0x57 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+                0x0000025e       0x57 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
  .debug_pubtypes
-                0x000002a5       0xb5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+                0x000002b5       0xb5 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
  .debug_pubtypes
-                0x0000035a      0x113 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+                0x0000036a      0x113 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
  .debug_pubtypes
-                0x0000046d       0x2b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+                0x0000047d       0x2b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
  .debug_pubtypes
-                0x00000498       0x76 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+                0x000004a8       0x76 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
  .debug_pubtypes
-                0x0000050e       0x5c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+                0x0000051e       0x5c /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
  .debug_pubtypes
-                0x0000056a      0x225 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+                0x0000057a      0x225 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
  .debug_pubtypes
-                0x0000078f       0x6b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+                0x0000079f       0x6b /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
 
-.debug_ranges   0x00000000      0x4c0
+.debug_ranges   0x00000000      0x4d8
  .debug_ranges  0x00000000       0x28 led.o
- .debug_ranges  0x00000028       0x28 lcd.o
- .debug_ranges  0x00000050       0x20 stringProcess.o
- .debug_ranges  0x00000070       0x30 serialIO.o
- .debug_ranges  0x000000a0       0x30 i2cIO.o
- .debug_ranges  0x000000d0       0x30 main.o
- .debug_ranges  0x00000100       0x28 sysTick.o
- .debug_ranges  0x00000128       0x18 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
- .debug_ranges  0x00000140       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
- .debug_ranges  0x00000160       0xe8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
- .debug_ranges  0x00000248       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
- .debug_ranges  0x00000308       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
- .debug_ranges  0x00000318       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
- .debug_ranges  0x00000350       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
- .debug_ranges  0x00000388       0xf0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
- .debug_ranges  0x00000478       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)
+ .debug_ranges  0x00000028       0x30 lcd.o
+ .debug_ranges  0x00000058       0x20 stringProcess.o
+ .debug_ranges  0x00000078       0x30 serialIO.o
+ .debug_ranges  0x000000a8       0x40 i2cIO.o
+ .debug_ranges  0x000000e8       0x30 main.o
+ .debug_ranges  0x00000118       0x28 sysTick.o
+ .debug_ranges  0x00000140       0x18 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/system_LPC17xx.o
+ .debug_ranges  0x00000158       0x20 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/startup_LPC17xx.o
+ .debug_ranges  0x00000178       0xe8 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_gpio.o)
+ .debug_ranges  0x00000260       0xc0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_i2c.o)
+ .debug_ranges  0x00000320       0x10 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_libcfg_default.o)
+ .debug_ranges  0x00000330       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_pinsel.o)
+ .debug_ranges  0x00000368       0x38 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_systick.o)
+ .debug_ranges  0x000003a0       0xf0 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_uart.o)
+ .debug_ranges  0x00000490       0x48 /usr/local/pkg/lpc1700-cmsis-lite-2011.01.26-i686-1/lib/libDriversLPC17xxgnu.a(lpc17xx_clkpwr.o)

@@ -14,6 +14,7 @@ void stage1()
 
 void stage2()
 {
+	lcdClearScreen();
 	lcdPrint("Hello World!\n!dlroW olleH");
 }
 
@@ -36,7 +37,7 @@ int main()
 	
     //stage1();
     stage2();
-    //stage3();
+    stage3();
     //stage4();
     
     return 0;

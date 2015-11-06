@@ -2,6 +2,7 @@
 #include "lpc17xx_i2c.h"
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_uart.h"
+#include "lpc17xx_gpio.h"
 
 #include "i2cIO.h"
 #include "serialIO.h"
@@ -68,36 +69,86 @@ void listAllDevices()
 uint8_t masterBuffer;
 uint8_t slaveBuffer;
 
-int interruptStatus = RESET;
-
-void I2C1_IRQHandler(void)
+uint8_t readKeyPressed()
 {
-    // just call std int handler
-	I2C_MasterHandler(LPC_I2C1);
-	if (I2C_MasterTransferComplete(LPC_I2C1))
-	{
-		serialPrintWithInt("Received: %\n\r", slaveBuffer);
-		serialPrint("INTERRUPTED\n\r");
-        interruptStatus = COMPLETED;
+	//Keypad mapping
+	const uint8_t row1[4] = {'1', '2', '3', 'A'};
+	const uint8_t row2[4] = {'4', '5', '6', 'B'};
+	const uint8_t row3[4] = {'7', '8', '9', 'C'};
+	const uint8_t row4[4] = {'*', '0', '#', 'D'};
+	
+	const uint8_t *keypad[4] = {row1, row2, row3, row4};
+	
+	int valid = 1;
+	
+	//Read Row(lower bits)
+    uint8_t highBits = 0xf0;
+    i2cTransferM(0x21, &highBits, 1, NULL, 0, I2C_TRANSFER_POLLING);
+    i2cTransferM(0x21, NULL, 0, &highBits, 1, I2C_TRANSFER_POLLING);
+    if (highBits == 0xf0) valid = 0;
+    serialPrintWithInt("Low % ",highBits);
+    int y = 0;
+    int i;
+    highBits = highBits >> 4;
+    for (i = 0; i < 4; i ++)
+    {
+    	if (((highBits >> i) & 1) == 0)
+    		y = 3-i;
     }
     
-    // just call std int handler
-	I2C_SlaveHandler(LPC_I2C1);
-	if (I2C_SlaveTransferComplete(LPC_I2C1))
-	{
-		serialPrint("INTERRUPTED\n\r");
-        interruptStatus = COMPLETED;
+	//Read Column(higher bits)
+	highBits = 0x0f;
+    i2cTransferM(0x21, &highBits, 1, NULL, 0, I2C_TRANSFER_POLLING);
+    i2cTransferM(0x21, NULL, 0, &highBits, 1, I2C_TRANSFER_POLLING);
+    if (highBits == 0x0f) valid = 0;
+    serialPrintWithInt("High % ",highBits);
+
+    int x = 0;
+    for (i = 0; i < 4; i ++)
+    {
+    	if (((highBits >> i) & 1) == 0)
+    		x = 3-i;
     }
+    
+    if (!valid) return 0;
+    else return keypad[x][y];
+}
+
+
+void EINT3_IRQHandler(void)
+{
+	if (GPIO_GetIntStatus(0, 23, 1))
+    {
+        GPIO_ClearInt(0,(1<<23));
+        serialPrint("Before Falling\n\r");	
+		
+		uint8_t prt = readKeyPressed();
+		if (prt) lcdPut(prt);
+		
+		serialPrint("Falling\n\r");
+		//LEDdebug(0b1010);
+    }
+    /*else if (GPIO_GetIntStatus(0, 23, 0))
+    {
+    	GPIO_ClearInt(0,(1<<23));
+
+    	lcdClearScreen();
+    	serialPrint("Rising\n\r");
+    	LEDdebug(0b0101);
+    }*/
+	
 }
 
 void registerKeyboardInterrupt()
 {
+	lcdClearScreen();
+/*NVIC_EnableIRQ(EINT3_IRQn);
 	uint8_t data = 0;
 	uint32_t dataReceive = 0;
 	
 	I2C_M_SETUP_Type transferMCfg;
     I2C_S_SETUP_Type transferSCfg;
-
+*/
 	/* Start I2C slave device first 
 
     transferSCfg.tx_data = NULL;
@@ -114,7 +165,7 @@ void registerKeyboardInterrupt()
     }
     serialPrintWithInt("Received: %\n\r", slaveBuffer);*/
 	
-	/* Then start I2C master device */
+	/* Then start I2C master device 
     transferMCfg.sl_addr7bit = 0x21;
     transferMCfg.retransmissions_max = 3;
     
@@ -144,14 +195,10 @@ void registerKeyboardInterrupt()
 		delayS(1);
 		LEDoff();
 	}
-	
-    highBits = 0x0f;
-    transferMCfg.tx_data = &highBits;
-    transferMCfg.tx_length = 1;
-    transferMCfg.rx_data = 0;
-    transferMCfg.rx_length = 0;
-    I2C_MasterTransferData(LPC_I2C1, &transferMCfg, I2C_TRANSFER_POLLING);
-    
+	*/
+    //uint8_t highBits = 0x0f;
+    //i2cTransferM(0x21, &highBits, 1, NULL, 0, I2C_TRANSFER_POLLING);
+    /*
     transferMCfg.tx_data = NULL;
     transferMCfg.tx_length = 0;
     transferMCfg.rx_data = &masterBuffer;
@@ -170,13 +217,15 @@ void registerKeyboardInterrupt()
 		LEDdebug(0b1111);
 		delayS(1);
 		LEDoff();
-	}
+	}*/
 	
-	while (interruptStatus == RESET)
-	{
-		//serialPrintWithInt("Received: %\n\r", slaveBuffer);
-		delayS(1);
-	}
+	//GPIO_SetDir(0, 1<<23, 0);
+	GPIO_ClearInt(0, 1<<23);
+	GPIO_IntCmd(0,(1<<23),1);
+	GPIO_IntCmd(0,(1<<23),0);
+	NVIC_EnableIRQ(EINT3_IRQn);
+	
+	while (1);
 }
 
 
