@@ -114,18 +114,25 @@ uint8_t readKeyPressed()
     else return keypad[x][y];
 }
 
-
 void EINT3_IRQHandler(void)
 {
 	if (GPIO_GetIntStatus(0, 23, 1))
     {
         GPIO_ClearInt(0,(1<<23));
-        serialPrint("Before Falling\n\r");
+        serialPrint("Before Falling\n\r");	
 		int i;
-        for (i = 0; i < 0x200000; i++) {   }	
+		//readKeyPressed();
+		//for (i = 0; i < 0x100000; i++);
+		uint8_t prt1, prt2;
+		//do
+		//{
+		prt1 = readKeyPressed();
+		for (i = 0; i < 0x10000; i++);
+		prt2 = readKeyPressed();
+		//}
+		if (prt1 && !prt2)
+		lcdPut(prt1);
 		
-		uint8_t prt = readKeyPressed();
-		if (prt) lcdPut(prt);
 		
 		serialPrint("Falling\n\r");
 		//LEDdebug(0b1010);
@@ -224,7 +231,6 @@ void registerKeyboardInterrupt()
 	//GPIO_SetDir(0, 1<<23, 0);
 	GPIO_ClearInt(0, 1<<23);
 	GPIO_IntCmd(0,(1<<23),1);
-	GPIO_IntCmd(0,(1<<23),0);
 	NVIC_EnableIRQ(EINT3_IRQn);
 	
 	while (1);
