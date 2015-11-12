@@ -23,11 +23,6 @@ void stage3()
 	registerKeyboardInterrupt();
 }
 
-void stage4()
-{
-
-}
-
 int main()
 {   
     setupLEDs();
@@ -36,9 +31,8 @@ int main()
 	lcd_init();
 	
     //stage1();
-    stage2();
+    //stage2();
     stage3();
-    //stage4();
     
     return 0;
 }

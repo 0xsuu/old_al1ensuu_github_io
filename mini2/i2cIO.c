@@ -65,6 +65,66 @@ void listAllDevices()
 	serialPrintWithInt("\n\rCount: %\n\r", count_devices);
 }
 
+uint8_t result[16], inputString[16];
+void calc()
+{
+    int operation = 0;
+    int position = -1;
+    
+    //Get operation type and position
+    int i;
+    for (i = 0; i < stringLength(inputString); i++)
+    {
+        if (inputString[i] > '9' || inputString[i] < '0')
+        {
+            if (i == 0)
+            {
+                //result[0] = (uint8_t *)"Error!";
+                return;
+            }
+            else
+            {
+                operation = inputString[i];
+                position = i;
+                break;
+            }
+        }
+    }
+    int num1 = 0;
+    int num2 = 0;
+    for (i = 0; i < position; i ++)
+    {
+        num1 += (inputString[i]-'0');
+        num1 *= 10;
+    }
+    num1/=10;
+    
+    for (i = position+1; i < stringLength(inputString); i ++)
+    {
+        num2 += (inputString[i]-'0');
+        num2 *= 10;
+    }
+    num2/=10;
+    
+    int resultNumber = operation=='+'?num1+num2:(operation=='-'?num1-num2:(operation=='*'?num1*num2:(operation=='/'?num1/num2:0)));
+    
+    int counter = 0;
+    while (resultNumber != 0)
+    {
+        result[counter] = resultNumber - resultNumber/10 * 10 + '0';
+        resultNumber /= 10;
+        counter ++;
+    }
+    
+    for (i = 0; i < stringLength(result)/2; i++)
+    {
+        uint8_t tmp = 0;
+        tmp = result[i];
+        result[i] = result[stringLength(result)-i-1];
+        result[stringLength(result)-i-1] = tmp;
+    }
+}
+
 //Global Variable for interrupt
 uint8_t masterBuffer;
 uint8_t slaveBuffer;
@@ -72,10 +132,10 @@ uint8_t slaveBuffer;
 uint8_t readKeyPressed()
 {
 	//Keypad mapping
-	const uint8_t row1[4] = {'1', '2', '3', 'A'};
-	const uint8_t row2[4] = {'4', '5', '6', 'B'};
-	const uint8_t row3[4] = {'7', '8', '9', 'C'};
-	const uint8_t row4[4] = {'*', '0', '#', 'D'};
+	const uint8_t row1[4] = {'1', '2', '3', '+'};
+	const uint8_t row2[4] = {'4', '5', '6', '-'};
+	const uint8_t row3[4] = {'7', '8', '9', '*'};
+	const uint8_t row4[4] = {'C', '0', '=', '/'};
 	
 	const uint8_t *keypad[4] = {row1, row2, row3, row4};
 	
@@ -114,6 +174,7 @@ uint8_t readKeyPressed()
     else return keypad[x][y];
 }
 
+int resultCount = 0;
 void EINT3_IRQHandler(void)
 {
 	if (GPIO_GetIntStatus(0, 23, 1))
@@ -121,17 +182,40 @@ void EINT3_IRQHandler(void)
         GPIO_ClearInt(0,(1<<23));
         serialPrint("Before Falling\n\r");	
 		int i;
-		//readKeyPressed();
-		//for (i = 0; i < 0x100000; i++);
+
 		uint8_t prt1, prt2;
-		//do
-		//{
+
 		prt1 = readKeyPressed();
-		for (i = 0; i < 0x100000; i++);
+		for (i = 0; i < 0x200000; i++);
 		prt2 = readKeyPressed();
 		//}
 		if (prt1 && !prt2)
-		lcdPut(prt1);
+		{
+			if (prt1 == '=')
+			{
+				calc();
+				lcdPrint(" \n= ");
+				
+				lcdPrint(result);
+			}
+			else if (prt1 == 'C')
+			{
+				resultCount = 0;
+				int j;
+				for (j = 0; j < 16; j++)
+				{
+					result[j] = 0;
+					inputString[j] = 0;
+				}
+				lcdClearScreen();
+			}
+			else
+			{
+				lcdPut(prt1);
+				inputString[resultCount] = prt1;
+				resultCount++;
+			}
+		}
 		
 		
 		serialPrint("Falling\n\r");
@@ -228,7 +312,8 @@ void registerKeyboardInterrupt()
 		LEDoff();
 	}*/
 	
-	//GPIO_SetDir(0, 1<<23, 0);
+	GPIO_SetDir(0, 1<<23, 0);
+	GPIO_SetValue(0, 1<<23);
 	GPIO_ClearInt(0, 1<<23);
 	GPIO_IntCmd(0,(1<<23),1);
 	NVIC_EnableIRQ(EINT3_IRQn);
