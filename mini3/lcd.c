@@ -1,0 +1,122 @@
+
+#include "stringProcess.h"
+#include "lpc17xx_i2c.h"
+#include "i2cIO.h"
+#include "serialIO.h"
+
+int stringConversion(uint8_t *transferData, char *outStr)
+{
+	int i;
+	int length = stringLength(outStr);
+	
+	transferData[0] = 0x40;
+	length ++;
+	
+	for (i = 0; i<length; i++)
+	{
+		transferData[i+1] = outStr[i]+0x80;
+	}
+
+	return length;
+}
+
+void lcdClearScreen()
+{
+	uint8_t buff[3] = {0x00, 0x08, 0x06};
+	uint8_t  buf[2] = {0x00, 0x80};
+	uint8_t dat[81];
+	dat[0] = 0x40;
+	int i ;
+	for(i =0; i< 80;i++)
+	{
+		dat[i+1] = 0x91;
+	}
+	uint8_t dispon[2] = {0x00, 0x0e};
+
+	i2cTransferM(0x3B, buff, 3, NULL, 0, I2C_TRANSFER_POLLING);
+	i2cTransferM(0x3B, buf, 2, NULL, 0, I2C_TRANSFER_POLLING);
+	i2cTransferM(0x3B, dat, 81, NULL, 0, I2C_TRANSFER_POLLING);
+	i2cTransferM(0x3B, dispon, 2, NULL, 0, I2C_TRANSFER_POLLING);
+}
+
+void lcd_init()
+{
+	uint8_t startup[11];
+	startup[0] = 0x00; // control byte more than one commands
+	startup[1] = 0x34; //func_set 8bit, 2x16, basic instruction
+	startup[2] = 0x0c; //disp_ctrl disp on, curs off, character blink off
+	startup[3] = 0x06; //entry_mode ddram move right, disp shift
+	startup[4] = 0x35; //func-set extended instruction set
+	startup[5] = 0x04; //disp_conf colm data left to right, row top to botom
+	startup[6] = 0x10; //temp_ctl : temp coeff 0
+	startup[7] = 0x42; //hv_gen voltage multiplier 4 X volt multiplier
+	startup[8] = 0x9f; //vlcd_set: set reg Va, 11111 mult factor 
+	startup[9] = 0x34; //func_set 8bit, 2x16, basic instruction
+	startup[10] = 0x02; //return home
+	
+	i2cTransferM(0x3B, startup, 11, NULL, 0, I2C_TRANSFER_POLLING);
+	
+	uint8_t addr[2];
+	addr[0] = 0x00; // control byte more than one command
+	addr[1] = 0x80; //first char address
+	
+	i2cTransferM(0x3B, addr, 2, NULL, 0, I2C_TRANSFER_POLLING);
+}
+
+void lcdPut(uint8_t outChar)
+{
+	uint8_t transferData[2] = {0x40, outChar+0x80};
+	i2cTransferM(0x3B, transferData, 2, NULL, 0, I2C_TRANSFER_POLLING);
+}
+
+void lcdPrint(char *outStr)
+{	
+	int hasToReturn = 0;
+	
+	int i;
+	for (i = 0; i<stringLength(outStr); i++)
+	{
+		if (outStr[i] == '\n')
+		{
+			hasToReturn = i;
+			break;
+		}
+	}
+	
+	if (hasToReturn)
+	{
+		uint8_t transferData1[hasToReturn];
+		uint8_t transferData2[stringLength(outStr)-hasToReturn];
+		char outStr1[hasToReturn];
+		char outStr2[stringLength(outStr)-hasToReturn];
+		
+		int j;
+		for(j = 0; j < stringLength(outStr); j++)
+		{
+			if (j < hasToReturn)
+			{
+				outStr1[j] = outStr[j];
+			}
+			else
+			{
+				outStr2[j-hasToReturn] = outStr[j];
+			}
+		}
+		//First Part
+		stringConversion(transferData1, outStr1);
+    	i2cTransferM(0x3B, transferData1, hasToReturn+1, NULL, 0, I2C_TRANSFER_POLLING);
+    	//Return
+    	uint8_t returnControl[2] = {0x00, 0xa9};
+    	i2cTransferM(0x3B, returnControl, 2, NULL, 0, I2C_TRANSFER_POLLING);
+    	//Second Part
+    	stringConversion(transferData2, outStr2);
+    	i2cTransferM(0x3B, transferData2, stringLength(outStr)-hasToReturn+1, NULL, 0, I2C_TRANSFER_POLLING);
+	}
+	else
+	{
+		uint8_t transferData[stringLength(outStr)+1];
+    	int length = stringConversion(transferData, outStr);
+    	i2cTransferM(0x3B, transferData, length, NULL, 0, I2C_TRANSFER_POLLING);
+    }
+}
+
