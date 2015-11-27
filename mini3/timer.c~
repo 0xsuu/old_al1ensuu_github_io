@@ -1,5 +1,5 @@
 
-void TIMER_Init()
+void TIMER_init()
 {
 
 }

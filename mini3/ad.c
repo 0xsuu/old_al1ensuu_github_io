@@ -13,7 +13,6 @@
 #include "stringProcess.h"
 #include "sysTick.h"
 
-#define NUM_SINE_SAMPLE 200
 #define PI (3.141592653589793)
 
 void AI_init()
@@ -68,10 +67,12 @@ void DAC_output(int value)
 
 void DAC_outputSineWave(double amplitude, double frequency)
 {
+	if (amplitude > 1.65) amplitude = 1.65;
+	
 	int i = 0;
-	for (i=0; i<NUM_SINE_SAMPLE; i++)
+	for (i=0; i<100000/frequency; i++)
 	{
-		DAC_output((int)((sin(i*2.0*PI/NUM_SINE_SAMPLE)+amplitude/2.0)*128));
+		DAC_output((int)((sin(frequency*i/100000*2*PI)*amplitude+amplitude)*(1023/3.3)));
 	}
 }
 
