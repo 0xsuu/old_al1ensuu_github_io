@@ -34,6 +34,7 @@ LDFLAGS+=-L$(CMSIS)/lib -lDriversLPC17xxgnu
 
 EXECNAME	= bin/mini3
 
+TIMER		= timer.o
 AD			= ad.o
 LED         = led.o
 LCD			= lcd.o
@@ -43,7 +44,7 @@ I2CIO		= i2cIO.o
 SYSTICK		= sysTick.o
 MAIN		= main.o
 
-TO_COMPILE	= $(AD) $(LED) $(LCD) $(STRINGPROCESS) $(SERIALIO) $(I2CIO) $(MAIN) $(SYSTICK)
+TO_COMPILE	= $(TIMER) $(AD) $(LED) $(LCD) $(STRINGPROCESS) $(SERIALIO) $(I2CIO) $(MAIN) $(SYSTICK)
 all:	mini3
 	@echo "Build finished"
 
@@ -53,7 +54,10 @@ mini3:	$(TO_COMPILE)
 	$(OBJCOPY) -I elf32-little -O binary $(EXECNAME) $(EXECNAME).bin
 	#Collect .o file to obj
 	mv *.o obj/
-    
+
+timer:		$(TIMER)
+	$(CC) -c timer.c $(LDFLAGS)
+	    
 ad:		$(AD)
 	$(CC) -c ad.c $(LDFLAGS)
 	

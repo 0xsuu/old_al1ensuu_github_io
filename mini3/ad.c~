@@ -13,7 +13,7 @@
 #include "stringProcess.h"
 #include "sysTick.h"
 
-#define NUM_SINE_SAMPLE 60
+#define NUM_SINE_SAMPLE 200
 #define PI (3.141592653589793)
 
 void AI_init()
@@ -30,7 +30,7 @@ void AI_init()
 
 	ADC_Init(LPC_ADC , 200000);
 	ADC_ChannelCmd(LPC_ADC, 1, ENABLE);
-	
+	ADC_BurstCmd(LPC_ADC,ENABLE);
 	ADC_StartCmd(LPC_ADC, ADC_START_NOW);
 }
 
@@ -53,7 +53,7 @@ int readChannel(uint8_t channel)
 {
 	if (ADC_ChannelGetStatus(LPC_ADC, channel, 1))
 	{
-		return ADC_ChannelGetData (LPC_ADC, channel);
+		return ADC_ChannelGetData(LPC_ADC, channel);
 	}
 	else
 	{
@@ -69,12 +69,9 @@ void DAC_output(int value)
 void DAC_outputSineWave(double amplitude, double frequency)
 {
 	int i = 0;
-	while (1)
+	for (i=0; i<NUM_SINE_SAMPLE; i++)
 	{
-		for (i=0; i<NUM_SINE_SAMPLE; i++)
-		{
-			DAC_output((int)((sin(i*(2.0*PI/NUM_SINE_SAMPLE))+1)*0x1ff));
-		}
+		DAC_output((int)((sin(i*2.0*PI/NUM_SINE_SAMPLE)+amplitude/2.0)*128));
 	}
 }
 
