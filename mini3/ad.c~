@@ -78,7 +78,7 @@ void DAC_outputSineWave(double amplitude, double frequency)
 	}
 }
 
-int PWM_ON_TIME = 0;
+int PWM_ON_TIME = 1450;
 
 void TIMER0_IRQHandler(void)
 {	
@@ -86,11 +86,11 @@ void TIMER0_IRQHandler(void)
         
 	if (TIM_GetIntStatus(LPC_TIM0, TIM_MR0_INT)== SET)
         {
-		if (PWM_ON_TIME > 200)
-		{ PWM_ON_TIME = 10;}
+		if (PWM_ON_TIME > 1900)
+		{ PWM_ON_TIME = 600;}
 		else
 		{
-		PWM_ON_TIME += 2;}
+		PWM_ON_TIME += 10;}
 		PWM_MatchUpdate(LPC_PWM1, 2, PWM_ON_TIME, PWM_MATCH_UPDATE_NOW);
 		PWMMatchCfgDat.IntOnMatch = DISABLE;
 		PWMMatchCfgDat.MatchChannel = 2;
@@ -144,7 +144,7 @@ void timer0_init()
         // To start timer 0
         TIM_Cmd(LPC_TIM0,ENABLE);
 
-	serialPrint("Int confg\n\r");
+	//serialPrint("Int confg\n\r");
 	
 	PWM_MATCHCFG_Type PWMMatchCfgDat;
 	
@@ -154,7 +154,7 @@ void timer0_init()
 }
 void PWM_init()
 {
-	timer0_init();
+	//timer0_init();
 	PWM_TIMERCFG_Type PWMCfgDat;
 	PWM_MATCHCFG_Type PWMMatchCfgDat;
 	PINSEL_CFG_Type PinCfg;
@@ -175,7 +175,7 @@ void PWM_init()
 	PWM_Init(LPC_PWM1, PWM_MODE_TIMER, &PWMCfgDat);
 	
 	/* Set match value for PWM match channel 0 = 5000000uS, update immediately */
-	PWM_MatchUpdate(LPC_PWM1, 0, 200, PWM_MATCH_UPDATE_NOW);
+	PWM_MatchUpdate(LPC_PWM1, 0, 20000, PWM_MATCH_UPDATE_NOW);
 	/* PWM Timer/Counter will be reset when channel 0 matching
 	* no interrupt when match
 	 * no stop when match 
@@ -204,6 +204,7 @@ void PWM_init()
 	
 	 /* Start PWM now */
 	PWM_Cmd(LPC_PWM1, ENABLE);
+	
 	
 }
 

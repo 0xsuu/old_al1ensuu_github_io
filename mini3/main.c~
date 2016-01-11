@@ -121,9 +121,9 @@ int main()
     //p.18
     //stage2();
     //p.16 & p.18
-    //stage3();
+    stage3();
     //p.25
-    stage4();
+    //stage4();
     
     return 0;
 }
